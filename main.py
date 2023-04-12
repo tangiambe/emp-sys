@@ -23,7 +23,7 @@ def main():
     department_file = company+"__department_info.yaml"
 
     try:
-        empList = import_from_yaml(employee_file)
+        emp_list = import_from_yaml(employee_file)
     except Exception:
         print("Employee list for Company "+company+" not found, creating new employee list")
     try:
@@ -82,3 +82,4 @@ def main():
 
 main()
             
+
