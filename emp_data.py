@@ -88,3 +88,16 @@ def validate_day(day:str, month:str, year:str) -> bool:
         print(f"Day ({day}) is not within range of the specicifed month ({month})")
     except:
         print(f"Day must be an integer. (Was given {day})")
+
+def validate_salary(salary: int) -> bool:
+    try:
+        if salary is int and salary > 0:
+            return True
+        elif salary is int and salary < 0:
+            raise ValueError
+        else:
+            raise TypeError
+    except ValueError:
+        print(f"Negative value detected for salary! Was given: {salary}")
+    except TypeError:
+        print(f"Wring type, expected integer. Got a {type(salary)}")

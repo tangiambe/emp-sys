@@ -10,23 +10,14 @@ def list_comp(emp_list):
 
     # convert string to date object
     today = datetime.strptime(todays_date, "%Y %m %d")
-    print("TODAY", today)
-
-    # for i in emp_list:
-    #     doe = datetime.strptime(i.get_doe(), "%Y %m %d")
-    #     # subtract to get num of years
-    #     num_years = (today - doe)/365
-    #     print("NUM YEARS:\n", num_years.days)
 
     # if employed in the past year
-    one_year = [emp.get_first_name() for emp in emp_list if (
+    one_year = [emp for emp in emp_list if (
         (today - datetime.strptime(emp.get_doe(), "%Y %m %d"))/365).days < 1]
-    print("ONE YEAR: ", one_year)
 
     # if employed for ten+ years
-    ten_year = [emp.get_first_name() for emp in emp_list if (
+    ten_year = [emp for emp in emp_list if (
         (today - datetime.strptime(emp.get_doe(), "%Y %m %d"))/365).days >= 10]
-    print("TEN YEAR: ", ten_year)
 
 
 emp1 = employee.Employee("Alessi Reiter", "2022 05 12", 50000, "python")
