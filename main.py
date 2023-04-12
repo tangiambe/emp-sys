@@ -1,6 +1,6 @@
 import sys
 from employee import *
-
+from employee_file_read_write import *
 
 
 
@@ -34,14 +34,19 @@ while True:
             emp_dept = input ("Enter Employee's department: ")
             new_emp = Employee(emp_fname, emp_lname, emp_doe, emp_salary, emp_dept)
             emp_list.append(new_emp)
+            write_to_yaml(emp_list, "employee_info.txt")
             
             if exitCase('0'):
                 sys.exit()
             else: 
                 continue
         case '4':
-            for emp in emp_list:
-                print(emp)
+            try:
+                emp_list = import_from_yaml("employee_info.txt")
+                for emp in emp_list:
+                    print(emp)
+            except FileNotFoundError:
+                print("No Employee File Found")
                 
             if exitCase('0'):
                 sys.exit()
