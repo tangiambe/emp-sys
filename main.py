@@ -27,7 +27,7 @@ def main():
     except Exception:
         print("Employee list for Company "+company+" not found, creating new employee list")
     try:
-        deptList = import_from_yaml(department_file)
+        dept_list = import_from_yaml(department_file)
     except Exception:
         print("Department list for Company "+company+" not found, creating new department list")
     
@@ -60,12 +60,9 @@ def main():
                     else: 
                         continue
                 case '4':
-                    try:
-                        emp_list = import_from_yaml(employee_file)
-                        for emp in emp_list:
-                            print(emp)
-                    except FileNotFoundError:
-                        print("No Employee File Found")
+                    emp_list = import_from_yaml(employee_file)
+                    for emp in emp_list:
+                        print(emp)
                         
                     if exitCase('0'):
                         sys.exit()
