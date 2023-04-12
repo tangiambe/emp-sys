@@ -37,6 +37,8 @@ def validate_doe(doe: list) -> bool:
     except ValueError:
         print("Invalid numbers, please enter appropriate numbers within the range")
         return False
+    except:
+        return False
 
 def validate_year(year:str) -> bool:
     try:
