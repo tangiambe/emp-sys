@@ -16,12 +16,20 @@ def exitCase(exit_key: str):
 
 def main():
     emp_list = []
-    employee_file = "employee_info.yaml"
+    company = input("Welcome! Type the name of your company to access its database: ").lower()
+    
+    employee_file = company+"__employee_info.yaml"
+
+    department_file = company+"__department_info.yaml"
 
     try:
         emp_list = import_from_yaml(employee_file)
     except Exception:
-        print("No employees found, using new list titled " + employee_file)
+        print("Employee list for Company "+company+" not found, creating new employee list")
+    try:
+        dept_list = import_from_yaml(department_file)
+    except Exception:
+        print("Department list for Company "+company+" not found, creating new department list")
     
     while True:
         menu_choices()
@@ -40,8 +48,18 @@ def main():
                     new_emp = Employee(emp_fname, emp_lname, emp_doe, emp_salary)
                     emp_list.append(new_emp)
                     try:
+                        emp_fname = input("Enter first name: ")
+                        emp_lname = input("Enter last name: ")
+                        emp_doe = input ("Enter date of employment (YYYY MM DD): ")
+                        emp_salary = int(input("Enter salary: "))
+                        #emp_dept = input ("Enter Employee's department: ")
+                        new_emp = Employee(emp_fname, emp_lname, emp_doe, emp_salary)
+                        emp_list.append(new_emp)
+                        #try:
                         write_to_yaml(emp_list, employee_file)
                         print("\n~~Employee Succesfully Added!~~")
+                        #except Exception:
+                            #print("Something went wrong with adding employee to file")
                     except Exception:
                         print("Something went wrong with adding employee to file")
                     
@@ -71,7 +89,7 @@ def main():
                 case '4':
                     for emp in emp_list:
                         print(f"\n{emp}")
-                       
+                        
                     if exitCase('0'):
                         sys.exit()
                     else: 
@@ -84,7 +102,4 @@ def main():
             print("Error, something went wrong. Returning to main menu")
 
 
-
 main()
-            
-

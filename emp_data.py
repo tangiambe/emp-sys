@@ -1,6 +1,8 @@
 # Employee Data validation
 # This file provides function to check if the date specified as the date of employement or name is correct.
 
+import re
+
 MAX_YEAR = 2023
 MIN_YEAR = 1923
 MAX_DAY_EVEN = 31
@@ -88,3 +90,28 @@ def validate_day(day:str, month:str, year:str) -> bool:
         print(f"Day ({day}) is not within range of the specicifed month ({month})")
     except:
         print(f"Day must be an integer. (Was given {day})")
+
+def validate_salary(salary: int) -> bool:
+    try:
+        if salary is int and salary > 0:
+            return True
+        elif salary is int and salary < 0:
+            raise ValueError
+        else:
+            raise TypeError
+    except ValueError:
+        print(f"Negative value detected for salary! Was given: {salary}")
+    except TypeError:
+        print(f"Wrong type, expected integer. Got a {type(salary)}")
+
+def validate_phone(number: str) -> bool:
+    phone_format = re.compile(r'[0-9]{3}-[0-9]{4}')
+    try:
+        if phone_format.search(number):
+            return True
+        else:
+            return False
+    except TypeError:
+        print("Wrong type! Expected String in 000-0000 format")
+    except:
+        print("Error detected")

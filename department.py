@@ -36,7 +36,10 @@ class Department:
     def get_budget(self) -> str:
         return self.budget
     def get_dept_head(self) -> employee:
-        return self.dept_head
+        if self.dept_head is not None:
+            return self.dept_head
+        else:
+            return None
     
     def set_dept_name(self, name: str):
         self.dept_name = name
