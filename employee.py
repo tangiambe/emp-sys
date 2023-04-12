@@ -5,9 +5,9 @@ set_of_emails = set()
 
 class Employee:
 
-    def __init__(self, name: str, doe: str, salary: int, department: str) -> None:
-        self.first_name = name.split()[0]
-        self.last_name = name.split()[1]
+    def __init__(self, first_name: str, last_name: str, doe: str, salary: int, department: str) -> None:
+        self.first_name = first_name
+        self.last_name = last_name
         self.doe = doe
         self.salary = salary
         self.department = department
