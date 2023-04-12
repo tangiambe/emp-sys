@@ -37,13 +37,13 @@ def main():
                         emp_lname = input("Enter last name: ")
                         emp_doe = input ("Enter date of employment (YYYY MM DD): ")
                         emp_salary = int(input("Enter salary: "))
-                        emp_dept = input ("Enter Employee's department: ")
-                        new_emp = Employee(emp_fname, emp_lname, emp_doe, emp_salary, emp_dept)
+                        #emp_dept = input ("Enter Employee's department: ")
+                        new_emp = Employee(emp_fname, emp_lname, emp_doe, emp_salary)
                         emp_list.append(new_emp)
-                        try:
-                            write_to_yaml(emp_list, employee_file)
-                        except Exception:
-                            print("Something went wrong with adding employee to file")
+                        #try:
+                        write_to_yaml(emp_list, employee_file)
+                        #except Exception:
+                            #print("Something went wrong with adding employee to file")
                     except Exception:
                         print("Error, something went wrong with adding employee")
                     
@@ -72,6 +72,10 @@ def main():
 
 
 
+<<<<<<< Updated upstream
 main()
             
 
+=======
+main()
+>>>>>>> Stashed changes
