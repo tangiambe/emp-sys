@@ -16,6 +16,7 @@ def emp_info(emp_list):
     print("3) Department              4) All Employees")
     print("0) Back to Main Menu")
 
+
     info = input("\nFilter by: ")
 
     match info:
