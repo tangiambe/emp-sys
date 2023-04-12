@@ -44,3 +44,5 @@ class Department:
         self.budget = budget
     def set_dept_head(self, head: employee):
         self.dept_head = head
+    def add_employee(self, new_employee: employee):
+        self.employees.append(new_employee)
