@@ -9,10 +9,7 @@ MIN_DAY = 1
 MAX_MONTH = 12
 MIN_MONTH = 1
 
-def validate_names(full_name: str) -> bool:
-    name_split = full_name.split()
-    first_name = name_split[0]
-    last_name = name_split[1]
+def validate_names(first_name: str, last_name: str) -> bool:
     if first_name.isalpha() and last_name.isalpha():
         return True
     else:
@@ -36,6 +33,8 @@ def validate_doe(doe: list) -> bool:
         return False
     except ValueError:
         print("Invalid numbers, please enter appropriate numbers within the range")
+        return False
+    except:
         return False
 
 def validate_year(year:str) -> bool:
