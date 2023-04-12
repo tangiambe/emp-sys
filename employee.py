@@ -56,9 +56,9 @@ class Employee:
     def set_salary(self, salary: int):
         self.salary = salary
 
-def create_company_email(first_name: str, last_name: str, birth_year: str) -> str:
+def create_company_email(first_name: str, last_name: str, employment_year: str) -> str:
     email = ''
-    email = email + first_name + last_name + birth_year[-2:] + "@company.com"
+    email = email + first_name + last_name + employment_year[-2:] + "@company.com"
     return email
 
 # def create_company_id
