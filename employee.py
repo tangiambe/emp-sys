@@ -2,17 +2,16 @@
 
 class Employee:
 
-    def __init__(self, first_name: str, last_name: str, doe: str, salary: int, department: str) -> None:
+    def __init__(self, first_name: str, last_name: str, doe: str, salary: int) -> None:
         self.first_name = first_name.capitalize()
         self.last_name = last_name.capitalize()
         self.doe = doe
         self.salary = salary
-        self.department = department
         self.id = create_company_id(self.first_name, self.last_name, self.doe)
         self.email = create_company_email(self.first_name, self.last_name, self.doe[2:4])
     
     def __str__(self) -> str:
-        return f"{self.first_name} {self.last_name}, {self.doe}, {self.salary}, {self.department}, {self.id}, {self.email}"
+        return f"First Name: {self.first_name}\nLast Name: {self.last_name}\nDate of Employment: {self.doe}\nSalary: {self.salary}\nID: {self.id}\nEmail: {self.email}"
     
     def get_email(self) -> str:
         return self.email
