@@ -12,11 +12,11 @@ class Employee:
         self.age = 2023 - int(dob[0])
         self.salary = salary
         self.department = department
-        self.id = #user create id function here
+        self.id = ' ' #user create id function here
         self.email = create_company_email(self.first_name, self.last_name, self.dob[0])
     
     def __str__(self) -> str:
-        return f"{self.first_name}, {self.last_name}, {self.age} years old, born on: {self.dob}, {self.email}"
+        return f"{self.first_name}, {self.last_name}, {self.age}, {self.doe}, {self.salary}, {self.department}, {self.id}, {self.email}"
     
     def get_email(self) -> str:
         return self.email
@@ -38,12 +38,6 @@ class Employee:
     
     def get_salary(self) -> int:
         return self.salary
-
-def ask_for_employee():
-    first_name = input("Please enter their first name: ")
-    last_name = input("Please enter their last name: ")
-    dob = input("Please enter their date of birth in the form YYYY MM DD: ").split()
-    return [first_name, last_name, dob]
     
 def create_company_email(first_name: str, last_name: str, birth_year: str) -> str:
     email = ''
