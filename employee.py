@@ -11,7 +11,7 @@ class Employee:
         self.doe = doe
         self.salary = salary
         self.department = department
-        self.id = ' ' #user create id function here
+        self.id = create_company_id(self.first_name, self.last_name, self.doe[0])
         self.email = create_company_email(self.first_name, self.last_name, self.doe[0])
     
     def __str__(self) -> str:
@@ -56,9 +56,13 @@ class Employee:
     def set_salary(self, salary: int):
         self.salary = salary
 
-def create_company_email(first_name: str, last_name: str, birth_year: str) -> str:
+def create_company_email(first_name: str, last_name: str, employment_year: str) -> str:
     email = ''
-    email = email + first_name + last_name + birth_year[-2:] + "@company.com"
+    email = email + first_name.lower() + last_name.lower() + employment_year[-2:] + "@company.com"
     return email
 
-# def create_company_id
+def create_company_id(first_name: str, last_name: str, year: str):
+    initials = first_name.lower()[0] + last_name.lower()[0]
+    year_joined = year[-2:]
+
+    return initials + year_joined
