@@ -9,14 +9,13 @@ class Employee:
         self.first_name = name.split()[0]
         self.last_name = name.split()[1]
         self.doe = doe
-        self.age = 2023 - int(dob[0])
         self.salary = salary
         self.department = department
         self.id = ' ' #user create id function here
-        self.email = create_company_email(self.first_name, self.last_name, self.dob[0])
+        self.email = create_company_email(self.first_name, self.last_name, self.doe[0])
     
     def __str__(self) -> str:
-        return f"{self.first_name}, {self.last_name}, {self.age}, {self.doe}, {self.salary}, {self.department}, {self.id}, {self.email}"
+        return f"{self.first_name}, {self.last_name}, {self.doe}, {self.salary}, {self.department}, {self.id}, {self.email}"
     
     def get_email(self) -> str:
         return self.email
@@ -39,31 +38,27 @@ class Employee:
     def get_salary(self) -> int:
         return self.salary
     
+    def set_first_name(self, first_name: str):
+        self.first_name = first_name
+
+    def set_last_name(self, last_name: str):
+        self.first_name = last_name
+
+    def set_id(self, id: str): #manually set a special id
+        self.id = id
+    
+    def set_doe(self, doe: str):
+        self.doe = doe
+    
+    def set_department(self, department:str): # this needs to be changed after to reflect the department class
+        self.department = department
+
+    def set_salary(self, salary: int):
+        self.salary = salary
+
 def create_company_email(first_name: str, last_name: str, birth_year: str) -> str:
     email = ''
     email = email + first_name + last_name + birth_year[-2:] + "@company.com"
     return email
 
-def write_employee(employees: list):
-    # This is the function that writes to the file through yaml calls
-    try:
-        with open("employee_sheet_yaml.yaml", mode="w", encoding="utf-8") as file:
-            yaml.safe_dump_all(employees, file)
-    except:
-        print("Error occured writing to the file")
-
-def filter_unique():
-    global list_of_employees
-    global set_of_emails
-
-    unique_list = []
-
-    for employee in list_of_employees:
-        if employee.get_email() not in set_of_emails:
-            set_of_emails.add(employee.get_email())
-            unique_list.append(employee)
-        else:
-            print("Duplicate Purged")
-            pass
-    
-    return unique_list
+# def create_company_id
