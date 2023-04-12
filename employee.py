@@ -1,4 +1,5 @@
 
+
 class Employee:
 
     def __init__(self, first_name: str, last_name: str, doe: str, salary: int, department: str) -> None:
@@ -7,11 +8,11 @@ class Employee:
         self.doe = doe
         self.salary = salary
         self.department = department
-        self.id = create_company_id(self.first_name, self.last_name, self.doe[0])
-        self.email = create_company_email(self.first_name, self.last_name, self.doe[0])
+        self.id = create_company_id(self.first_name, self.last_name, self.doe)
+        self.email = create_company_email(self.first_name, self.last_name, self.doe[2:4])
     
     def __str__(self) -> str:
-        return f"{self.first_name}, {self.last_name}, {self.doe}, {self.salary}, {self.department}, {self.id}, {self.email}"
+        return f"{self.first_name} {self.last_name}, {self.doe}, {self.salary}, {self.department}, {self.id}, {self.email}"
     
     def get_email(self) -> str:
         return self.email
@@ -54,11 +55,11 @@ class Employee:
 
 def create_company_email(first_name: str, last_name: str, doe: str) -> str:
     email = ''
-    email = email + first_name.lower() + last_name.lower() + doe[2:4] + "@company.com"
+    email = email + first_name.lower() + '.' + last_name.lower() + employment_year[2:4] + "@company.com"
     return email
 
 def create_company_id(first_name: str, last_name: str, doe: str) -> str:
     initials = first_name.lower()[0] + last_name.lower()[0]
-    year_joined = doe[2:4]
+    year_joined = year[2:4]
 
     return initials + year_joined
