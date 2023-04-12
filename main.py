@@ -19,7 +19,7 @@ def main():
     employee_file = "employee_info.yaml"
 
     try:
-        empList = import_from_yaml(employee_file)
+        emp_list = import_from_yaml(employee_file)
     except Exception:
         print("No employees found, using new list titled "+employee_file)
     
