@@ -1,13 +1,9 @@
-import yaml
-
-list_of_employees = []
-set_of_emails = set()
 
 class Employee:
 
     def __init__(self, first_name: str, last_name: str, doe: str, salary: int, department: str) -> None:
-        self.first_name = first_name
-        self.last_name = last_name
+        self.first_name = first_name.capitalize()
+        self.last_name = last_name.capitalize()
         self.doe = doe
         self.salary = salary
         self.department = department
@@ -61,7 +57,7 @@ def create_company_email(first_name: str, last_name: str, employment_year: str) 
     email = email + first_name.lower() + last_name.lower() + employment_year[-2:] + "@company.com"
     return email
 
-def create_company_id(first_name: str, last_name: str, year: str):
+def create_company_id(first_name: str, last_name: str, year: str) -> str:
     initials = first_name.lower()[0] + last_name.lower()[0]
     year_joined = year[-2:]
 
