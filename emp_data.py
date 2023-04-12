@@ -104,13 +104,16 @@ def validate_salary(salary: int) -> bool:
     except TypeError:
         print(f"Wrong type, expected integer. Got a {type(salary)}")
 
+def match_found(match) -> bool:
+    if match is None:
+        return False
+    else:
+        return True
+
 def validate_phone(number: str) -> bool:
-    phone_format = re.compile(r'[0-9]{3}-[0-9]{4}')
     try:
-        if phone_format.search(number):
-            return True
-        else:
-            return False
+        match = re.match(r'([0-9]{3}-[0-9]{4})', '000-0000')
+        return match_found(match)
     except TypeError:
         print("Wrong type! Expected String in 000-0000 format")
     except:
