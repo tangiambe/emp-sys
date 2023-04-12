@@ -102,7 +102,7 @@ def validate_salary(salary: int) -> bool:
     except ValueError:
         print(f"Negative value detected for salary! Was given: {salary}")
     except TypeError:
-        print(f"Wring type, expected integer. Got a {type(salary)}")
+        print(f"Wrong type, expected integer. Got a {type(salary)}")
 
 def validate_phone(number: str) -> bool:
     phone_format = re.compile(r'[0-9]{3}-[0-9]{4}')
