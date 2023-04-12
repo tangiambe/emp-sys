@@ -13,6 +13,7 @@ class Department:
 
     def __str__(self) -> str:
         return f"Name: {self.dept_name}\nCode: {self.dept_code}\nContact Number: {self.dept_contact}\nBudget: {self.budget}\nCurrent Head: {self.dept_head}"
+    
     def get_name(self) -> str:
         return self.dept_name
     def get_code(self) -> str:
