@@ -40,6 +40,19 @@ while True:
                 sys.exit()
             else: 
                 continue
+        case '2':
+            try:
+                emp_list = import_from_yaml("employee_info.txt")
+                # del_key = input("Enter Employee ID to remove: ")
+                for emp in emp_list:
+                    print(emp)
+            except FileNotFoundError:
+                print("No Employee File Found")
+                
+            if exitCase('0'):
+                sys.exit()
+            else: 
+                continue
         case '4':
             try:
                 emp_list = import_from_yaml("employee_info.txt")
