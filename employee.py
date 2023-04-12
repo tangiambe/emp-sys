@@ -1,21 +1,17 @@
-import yaml
 
-list_of_employees = []
-set_of_emails = set()
 
 class Employee:
 
-    def __init__(self, name: str, doe: str, salary: int, department: str) -> None:
-        self.first_name = name.split()[0]
-        self.last_name = name.split()[1]
+    def __init__(self, first_name: str, last_name: str, doe: str, salary: int) -> None:
+        self.first_name = first_name.capitalize()
+        self.last_name = last_name.capitalize()
         self.doe = doe
         self.salary = salary
-        self.department = department
-        self.id = create_company_id(self.first_name, self.last_name, self.doe[0])
-        self.email = create_company_email(self.first_name, self.last_name, self.doe[0])
+        self.id = create_company_id(self.first_name, self.last_name, self.doe)
+        self.email = create_company_email(self.first_name, self.last_name, self.doe[2:4])
     
     def __str__(self) -> str:
-        return f"{self.first_name}, {self.last_name}, {self.doe}, {self.salary}, {self.department}, {self.id}, {self.email}"
+        return f"First Name: {self.first_name}\nLast Name: {self.last_name}\nDate of Employment: {self.doe}\nSalary: {self.salary}\nID: {self.id}\nEmail: {self.email}"
     
     def get_email(self) -> str:
         return self.email
@@ -39,10 +35,10 @@ class Employee:
         return self.salary
     
     def set_first_name(self, first_name: str):
-        self.first_name = first_name
+        self.first_name = first_name.capitalize()
 
     def set_last_name(self, last_name: str):
-        self.first_name = last_name
+        self.first_name = last_name.capitalize()
 
     def set_id(self, id: str): #manually set a special id
         self.id = id
@@ -56,13 +52,13 @@ class Employee:
     def set_salary(self, salary: int):
         self.salary = salary
 
-def create_company_email(first_name: str, last_name: str, employment_year: str) -> str:
+def create_company_email(first_name: str, last_name: str, doe: str) -> str:
     email = ''
-    email = email + first_name.lower() + last_name.lower() + employment_year[-2:] + "@company.com"
+    email = email + first_name.lower() + '.' + last_name.lower() + doe[2:4] + "@company.com"
     return email
 
-def create_company_id(first_name: str, last_name: str, year: str):
+def create_company_id(first_name: str, last_name: str, doe: str) -> str:
     initials = first_name.lower()[0] + last_name.lower()[0]
-    year_joined = year[-2:]
+    year_joined = doe[2:4]
 
     return initials + year_joined
