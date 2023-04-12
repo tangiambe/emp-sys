@@ -16,12 +16,20 @@ def exitCase(exit_key: str):
 
 def main():
     emp_list = []
-    employee_file = "employee_info.yaml"
+    company = input("Welcome! Type the name of your company to access its database: ").lower()
+    
+    employee_file = company+"__employee_info.yaml"
+
+    department_file = company+"__department_info.yaml"
 
     try:
         emp_list = import_from_yaml(employee_file)
     except Exception:
-        print("No employees found, using new list titled "+employee_file)
+        print("Employee list for Company "+company+" not found, creating new employee list")
+    try:
+        deptList = import_from_yaml(department_file)
+    except Exception:
+        print("Department list for Company "+company+" not found, creating new department list")
     
     while True:
         menu_choices()
@@ -53,7 +61,7 @@ def main():
                         continue
                 case '4':
                     try:
-                        emp_list = import_from_yaml("employee_info.txt")
+                        emp_list = import_from_yaml(employee_file)
                         for emp in emp_list:
                             print(emp)
                     except FileNotFoundError:
