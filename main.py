@@ -40,6 +40,13 @@ def main():
                     print("Logging Out......Bye Bye!")
                     sys.exit()
                 case '1':
+
+                    emp_fname = input("Enter first name: ")
+                    emp_lname = input("Enter last name: ")
+                    emp_doe = input ("Enter date of employment (YYYY MM DD): ")
+                    emp_salary = int(input("Enter salary: "))
+                    new_emp = Employee(emp_fname, emp_lname, emp_doe, emp_salary)
+                    emp_list.append(new_emp)
                     try:
                         emp_fname = input("Enter first name: ")
                         emp_lname = input("Enter last name: ")
@@ -50,19 +57,38 @@ def main():
                         emp_list.append(new_emp)
                         #try:
                         write_to_yaml(emp_list, employee_file)
+                        print("\n~~Employee Succesfully Added!~~")
                         #except Exception:
                             #print("Something went wrong with adding employee to file")
                     except Exception:
-                        print("Error, something went wrong with adding employee")
+                        print("Something went wrong with adding employee to file")
                     
                     if exitCase('0'):
                         sys.exit()
                     else: 
                         continue
-                case '4':
-                    emp_list = import_from_yaml(employee_file)
+                case '2':
+                    del_key = input("Enter Employee ID to be removed: ")
+                    found = False
                     for emp in emp_list:
-                        print(emp)
+                        if Employee.get_id(emp) == del_key:
+                            emp_list.remove(emp)
+                            found = True
+                            print("\n~~Employee Succesfully Removed!~~")
+                            break
+                    if found:
+                        write_to_yaml(emp_list, employee_file)
+                    else:
+                        print("Employee Not Found")
+                    if exitCase('0'):
+                        sys.exit()
+                    else: 
+                        continue
+                case '3':
+                    break
+                case '4':
+                    for emp in emp_list:
+                        print(f"\n{emp}")
                         
                     if exitCase('0'):
                         sys.exit()
@@ -76,11 +102,4 @@ def main():
             print("Error, something went wrong. Returning to main menu")
 
 
-
-<<<<<<< Updated upstream
 main()
-            
-
-=======
-main()
->>>>>>> Stashed changes
