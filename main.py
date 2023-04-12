@@ -1,6 +1,7 @@
 import sys
-from employee import Employee
-from employee import create_company_id
+from employee import *
+
+
 
 
 emp_list = []
@@ -32,7 +33,6 @@ while True:
             emp_salary = int(input("Enter salary: "))
             emp_dept = input ("Enter Employee's department: ")
             new_emp = Employee(emp_fname, emp_lname, emp_doe, emp_salary, emp_dept)
-            emp_id = create_company_id(new_emp.get_first_name(), new_emp.get_last_name(), new_emp.get_doe())
             emp_list.append(new_emp)
             
             if exitCase('0'):
