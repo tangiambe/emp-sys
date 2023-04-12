@@ -21,7 +21,7 @@ def main():
     try:
         emp_list = import_from_yaml(employee_file)
     except Exception:
-        print("No employees found, using new list titled "+employee_file)
+        print("No employees found, using new list titled " + employee_file)
     
     while True:
         menu_choices()
@@ -32,33 +32,46 @@ def main():
                     print("Logging Out......Bye Bye!")
                     sys.exit()
                 case '1':
+
+                    emp_fname = input("Enter first name: ")
+                    emp_lname = input("Enter last name: ")
+                    emp_doe = input ("Enter date of employment (YYYY MM DD): ")
+                    emp_salary = int(input("Enter salary: "))
+                    new_emp = Employee(emp_fname, emp_lname, emp_doe, emp_salary)
+                    emp_list.append(new_emp)
                     try:
-                        emp_fname = input("Enter first name: ")
-                        emp_lname = input("Enter last name: ")
-                        emp_doe = input ("Enter date of employment (YYYY MM DD): ")
-                        emp_salary = int(input("Enter salary: "))
-                        emp_dept = input ("Enter Employee's department: ")
-                        new_emp = Employee(emp_fname, emp_lname, emp_doe, emp_salary, emp_dept)
-                        emp_list.append(new_emp)
-                        try:
-                            write_to_yaml(emp_list, employee_file)
-                        except Exception:
-                            print("Something went wrong with adding employee to file")
+                        write_to_yaml(emp_list, employee_file)
+                        print("\n~~Employee Succesfully Added!~~")
                     except Exception:
-                        print("Error, something went wrong with adding employee")
+                        print("Something went wrong with adding employee to file")
                     
                     if exitCase('0'):
                         sys.exit()
                     else: 
                         continue
+                case '2':
+                    del_key = input("Enter Employee ID to be removed: ")
+                    found = False
+                    for emp in emp_list:
+                        if Employee.get_id(emp) == del_key:
+                            emp_list.remove(emp)
+                            found = True
+                            print("\n~~Employee Succesfully Removed!~~")
+                            break
+                    if found:
+                        write_to_yaml(emp_list, employee_file)
+                    else:
+                        print("Employee Not Found")
+                    if exitCase('0'):
+                        sys.exit()
+                    else: 
+                        continue
+                case '3':
+                    break
                 case '4':
-                    try:
-                        emp_list = import_from_yaml("employee_info.txt")
-                        for emp in emp_list:
-                            print(emp)
-                    except FileNotFoundError:
-                        print("No Employee File Found")
-                        
+                    for emp in emp_list:
+                        print(f"\n{emp}")
+                       
                     if exitCase('0'):
                         sys.exit()
                     else: 
