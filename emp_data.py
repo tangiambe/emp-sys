@@ -3,7 +3,8 @@
 
 MAX_YEAR = 2023
 MIN_YEAR = 1923
-MAX_DAY = 31
+MAX_DAY_EVEN = 31
+MAX_DAY_ODD = 30
 MIN_DAY = 1
 MAX_MONTH = 12
 MIN_MONTH = 1
@@ -24,7 +25,7 @@ def validate_doe(doe: list) -> bool:
     day = date_split[2]
     try: 
         if year.isdigit() and month.isdigit() and day.isdigit():
-            if validate_year(year) and validate_month(month) and validate_day(day, month):
+            if validate_year(year) and validate_month(month) and validate_day(day, month, year):
                 return True
             else:
                 raise ValueError
@@ -67,13 +68,19 @@ def validate_month(month:str) -> bool:
         print("Year must be an integer")
         return False
 
-def validate_day(day:str, month:str) -> bool:
+def validate_day(day:str, month:str, year:str) -> bool:
     try:
+        year = int(year)
         day = int(day)
         month = int(month)
-        if month == 2 and day <= 28 and day >= MIN_DAY:
+
+        if (year % 4 == 0) and month == 2 and day <= 28 and day >= MIN_DAY:
             return True
-        elif day <= MAX_DAY and day >= MIN_DAY and month != 2:
+        elif (year % 4 != 0) and month == 2 and day <= 27 and day >= MIN_DAY:
+            return True
+        elif day <= MAX_DAY_ODD and day >= MIN_DAY and (month % 2 == 1):
+            return True
+        elif day <= MAX_DAY_EVEN and day >= MIN_DAY and (month % 2 == 0):
             return True
         else:
             raise ValueError
