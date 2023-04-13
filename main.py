@@ -122,7 +122,6 @@ def main():
                             case '4':
                                 # LIST EMPLOYEE INFO (LIST COMPREHENSION)
                                 emp_list_comp.emp_info(emp_list)
-
                                 print("Returning to Employee Menu.....")
                                 continue
                             case _:
