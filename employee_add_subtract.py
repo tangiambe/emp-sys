@@ -1,13 +1,35 @@
 from employee import *
 from employee_file_read_write import *
+from department import *
+from dept_menu_functions import *
 
-def add_emp_prompt(emp_list, employee_file):
+def add_emp_prompt(emp_list, employee_file, dept_list, dept_file):
     emp_fname = input("Enter first name: ")
     emp_lname = input("Enter last name: ")
     emp_doe = input ("Enter date of employment (YYYY MM DD): ")
     emp_salary = int(input("Enter salary: "))
     dept_code = input("Enter the dept code: ")
-    return(add_emp(emp_list, employee_file,emp_fname,emp_lname,emp_doe,emp_salary,dept_code))
+    return(add_emp(emp_list, employee_file,emp_fname,emp_lname,emp_doe,emp_salary,verify_dept(dept_code, dept_list, dept_file)))
+
+def verify_dept(code, dept_list, dept_file):
+    dept_found = False
+    while not dept_found:
+        for dept in dept_list:
+            if Department.get_code(dept) == code:
+                dept_found = True
+                return code
+        if not dept_found:
+            print(f"Department '{code}' does not exist!\nAssigning DEFAULT Department...")  
+            code = Department.DEFAULT_CODE
+            dept_list.append(Department(dept_code= code))
+            try:
+                write_to_yaml(dept_list, dept_file)
+            except Exception:
+                print("Something went wrong with adding DEFAULT department to file")
+            return code   
+        else:
+            print("Invalid Input!\n")
+            break
 
 def add_emp(emp_list, employee_file,emp_fname,emp_lname,emp_doe,emp_salary,dept_code):
     new_emp = Employee(emp_fname, emp_lname, emp_doe, emp_salary, dept_code)
