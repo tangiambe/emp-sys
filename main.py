@@ -1,4 +1,5 @@
 import sys
+import os
 import list_comp
 from employee import *
 from employee_file_read_write import *
@@ -29,22 +30,24 @@ def dept_menu():
 def main():
     global emp_list
     global dept_list
-        
-    company = input( "Welcome! Type the name of your company to access its database: ").lower()
 
-    employee_file = company+"__employee_info.yaml"
+    
+    company = input("Welcome! Type the name of your company to access its database: ").lower()
+    
+    employee_file = company+"/"+company+"__employee_info.yaml"
 
-    department_file = company+"__department_info.yaml"
+    department_file = company+"/"+company+"__department_info.yaml"
 
     try:
         emp_list = import_from_yaml(employee_file)
     except Exception:
-        print("Employee list for Company " + company + " not found, creating new employee list")
-            
+        print("Employee list for Company "+company+" not found, creating new employee list")
+        os.mkdir(company)
+    
     try:
         dept_list = import_from_yaml(department_file)
     except Exception:
-        print("Department list for Company " + company + " not found, creating new department list")
+        print("Department list for Company "+company+" not found, creating new department list")
 
     while True:
         main_menu(company)
@@ -91,7 +94,7 @@ def main():
                                 input("\nEnter any key to return to Employee Menu. ")
                                 print("Returning to Employee Menu.....")
                                 continue
-                            case '2':
+                           case '2':
                                 # REMOVE EMPLOYEE
                                 # remove_emp()
                                 del_key = input("Enter Employee ID to be removed: ")
