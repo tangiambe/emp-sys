@@ -41,7 +41,7 @@ def validate_name(name: str) -> bool:
             return True
     except:
         print("Error occured processing the name")
-        
+
 def validate_doe(doe: list) -> bool:
     date_split = doe.split()
     year = date_split[0]
@@ -158,6 +158,8 @@ def validate_budget(budget: str) -> bool:
                 raise ValueError
         else:
             raise TypeError
+    except LowBudgetException:
+        print("Budget is too low")
     except ValueError:
         inform_value_error(budget)
     except TypeError:
