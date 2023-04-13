@@ -9,7 +9,7 @@ class Employee:
         self.salary = salary
         self.dept_code = dept_code
         self.id = create_company_id(self.first_name, self.last_name, self.doe)
-        self.email = create_company_email(self.first_name, self.last_name, self.doe[2:4])
+        self.email = create_company_email(self.first_name, self.last_name, self.doe)
     
     def __str__(self) -> str:
         return f"First Name: {self.first_name}\nLast Name: {self.last_name}\nDate of Employment: {self.doe}\nSalary: {self.salary}\nID: {self.id}\nEmail: {self.email}"
