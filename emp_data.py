@@ -46,7 +46,6 @@ def validate_employee_id(set_of_ids: set, id_to_check: str) -> bool:
     id_sub = set(id_to_check)
     return id_sub.issubset(set_of_ids)
     
-
 def validate_doe(doe: list) -> bool:
     date_split = doe.split()
     year = date_split[0]
