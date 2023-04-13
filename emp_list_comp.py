@@ -7,7 +7,7 @@ def emp_info_menu():
     print("\n************* Employee Information ***************")
     print("1) Years of Employment     2) Salary")
     print("3) Department              4) All Employee Information")
-    print("0) Back to Main Menu")
+    print("0) Back to Employee Management")
 
 
 def emp_info(emp_list):
