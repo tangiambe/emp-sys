@@ -4,6 +4,9 @@ from employee import *
 from employee_file_read_write import *
 from department import *
 
+emp_list = []
+dept_list = []
+
 
 def menu_choices():
     print("\n************* Employee Management System ***************")
@@ -19,8 +22,9 @@ def exitCase(exit_key: str):
 
 
 def main():
-    emp_list = []
-    dept_list = []
+    global emp_list
+    global dept_list
+    
     company = input(
         "Welcome! Type the name of your company to access its database: ").lower()
 
@@ -51,12 +55,12 @@ def main():
                     try:
                         # To do: Make a function to create a dept
                         dept_name = input("Enter Employee's department: ")
-                        dept_code = input("Enter the dept code")
+                        dept_code = input("Enter the dept code: ")
                         dept_contact_number = input(
-                            "Enter the contact num in this format: 123-4567")
-                        dept_budget = int(input("Please enter the budget"))
+                            "Enter the contact num in this format: 123-4567: ")
+                        dept_budget = int(input("Please enter the budget: "))
                         dept_company_name = input(
-                            "Please enter the company name")
+                            "Please enter the company name: ")
                         new_dept = Department(
                             dept_name, dept_code, dept_contact_number, dept_budget, dept_company_name)
                         dept_list.append(new_dept)
