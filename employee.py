@@ -1,12 +1,13 @@
-
+import department
 
 class Employee:
 
-    def __init__(self, first_name: str, last_name: str, doe: str, salary: int) -> None:
+    def __init__(self, first_name: str, last_name: str, doe: str, salary: int, dept: department) -> None:
         self.first_name = first_name.capitalize()
         self.last_name = last_name.capitalize()
         self.doe = doe
         self.salary = salary
+        self.department = dept
         self.id = create_company_id(self.first_name, self.last_name, self.doe)
         self.email = create_company_email(self.first_name, self.last_name, self.doe[2:4])
     
@@ -28,7 +29,7 @@ class Employee:
     def get_doe(self) -> str:
         return self.doe
     
-    def get_department(self) -> str:
+    def get_department(self) -> department:
         return self.department
     
     def get_salary(self) -> int:
@@ -46,8 +47,8 @@ class Employee:
     def set_doe(self, doe: str):
         self.doe = doe
     
-    def set_department(self, department:str): # this needs to be changed after to reflect the department class
-        self.department = department
+    def set_department(self, dept: department): # this needs to be changed after to reflect the department class
+        self.department = dept
 
     def set_salary(self, salary: int):
         self.salary = salary
