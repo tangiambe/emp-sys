@@ -1,4 +1,4 @@
-import department
+from employee_custom_exception import *
 
 class Employee:
 
@@ -47,7 +47,7 @@ class Employee:
     def set_doe(self, doe: str):
         self.doe = doe
     
-    def set_department(self, dept: department): # this needs to be changed after to reflect the department class
+    def set_department(self, dept: str):
         self.dept_code = dept
 
     def set_salary(self, salary: int):
