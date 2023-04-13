@@ -2,6 +2,7 @@
 # This file provides function to check if the date specified as the date of employement or name is correct.
 
 import re
+from employee_custom_exception import *
 
 MAX_YEAR = 2023
 MIN_YEAR = 1923
@@ -32,6 +33,15 @@ def validate_alpha(string: str) -> bool:
         print('Error occured with the given val when checking for alpha')
         return False
     
+def validate_name(name: str) -> bool:
+    try:
+        if name == '' or name == ' ' or validate_alpha(name) == False:
+            raise NoNameException
+        else:
+            return True
+    except:
+        print("Error occured processing the name")
+        
 def validate_doe(doe: list) -> bool:
     date_split = doe.split()
     year = date_split[0]
@@ -119,8 +129,10 @@ def validate_salary(salary: str) -> bool:
     try:
         if salary.isdigit():
             salary_value = int(salary)
-            if salary_value > 0:
+            if salary_value >= 45000:
                 return True
+            elif salary_value > 0 and salary_value < 45000:
+                raise LowSalaryException
             else:
                 raise ValueError
         else:
@@ -131,6 +143,27 @@ def validate_salary(salary: str) -> bool:
         inform_type_error('int', salary)
     except:
         print('Error regarding the given salary')
+    
+    return False
+
+def validate_budget(budget: str) -> bool:
+    try:
+        if budget.isdigit():
+            budget_value = int(budget)
+            if budget_value >= 60000:
+                return True
+            elif budget_value > 0 and budget_value < 60000:
+                raise LowBudgetException
+            else:
+                raise ValueError
+        else:
+            raise TypeError
+    except ValueError:
+        inform_value_error(budget)
+    except TypeError:
+        inform_type_error('int', budget)
+    except:
+        print('Error regarding the given budget')
     
     return False
 
@@ -146,11 +179,9 @@ def validate_phone(number: str) -> bool:
         if phone_match(number):
             return True
         else:
-            raise ValueError
+            raise ContactNumberException
     except TypeError:
         inform_type_error('string', number)
-    except ValueError:
-        print(f"Improper number format. The Phone number must be given as \'123-4567\' was given: {number}")
     except:
         print(f"Error detected regarding the given phone number {number=}")
     
