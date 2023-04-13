@@ -1,6 +1,7 @@
 import sys
 from employee import *
 from employee_file_read_write import *
+from department import *
 
 
 def menu_choices():
@@ -16,6 +17,7 @@ def exitCase(exit_key: str):
 
 def main():
     emp_list = []
+    dept_list = []
     company = input("Welcome! Type the name of your company to access its database: ").lower()
     
     employee_file = company+"__employee_info.yaml"
@@ -40,29 +42,29 @@ def main():
                     print("Logging Out......Bye Bye!")
                     sys.exit()
                 case '1':
-
-                    emp_fname = input("Enter first name: ")
-                    emp_lname = input("Enter last name: ")
-                    emp_doe = input ("Enter date of employment (YYYY MM DD): ")
-                    emp_salary = int(input("Enter salary: "))
-                    new_emp = Employee(emp_fname, emp_lname, emp_doe, emp_salary)
-                    emp_list.append(new_emp)
                     try:
+                        # To do: Make a function to create a dept
+                        dept_name = input ("Enter Employee's department: ")
+                        dept_code = input("Enter the dept code")
+                        dept_contact_number = input("Enter the contact num in this format: 123-4567")
+                        dept_budget = int(input("Please enter the budget"))
+                        dept_company_name = input("Please enter the company name")
+                        new_dept = Department(dept_name, dept_code, dept_contact_number, dept_budget, dept_company_name)
+                        dept_list.append(new_dept)
+                        # To do: Make this into a function
                         emp_fname = input("Enter first name: ")
                         emp_lname = input("Enter last name: ")
                         emp_doe = input ("Enter date of employment (YYYY MM DD): ")
                         emp_salary = int(input("Enter salary: "))
-                        #emp_dept = input ("Enter Employee's department: ")
-                        new_emp = Employee(emp_fname, emp_lname, emp_doe, emp_salary)
+                        new_emp = Employee(emp_fname, emp_lname, emp_doe, emp_salary, dept_code)
                         emp_list.append(new_emp)
-                        #try:
-                        write_to_yaml(emp_list, employee_file)
-                        print("\n~~Employee Succesfully Added!~~")
-                        #except Exception:
-                            #print("Something went wrong with adding employee to file")
-                    except Exception:
-                        print("Something went wrong with adding employee to file")
-                    
+                        try:
+                            write_to_yaml(emp_list, employee_file)
+                            print("\n~~Employee Succesfully Added!~~")
+                        except Exception:
+                            print("Something went wrong with adding employee to file")
+                    except:
+                        print("Couldn't create the employee")
                     if exitCase('0'):
                         sys.exit()
                     else: 
@@ -103,3 +105,6 @@ def main():
 
 
 main()
+
+
+
