@@ -3,6 +3,34 @@ from employee_file_read_write import *
 from department import *
 from dept_menu_functions import *
 
+def emp_name_input() -> str:
+    while True:
+        emp_name = input("Please enter the employee's first/last name: ")
+        if validate_name(emp_name):
+            return emp_name
+    
+def emp_id_input() -> str:
+    emp_id = input("Please input the department code: ")
+    return emp_id
+
+def emp_doe_input() -> str:
+    while True:
+        emp_doe = input("Please input the department code: ")
+        if validate_doe(emp_doe):
+            return emp_doe
+
+def emp_new_dept_input() -> str:
+    while True:
+        emp_new_dept = input("Please enter ")
+        # check dept codes to see if one exists
+        # if yes return the input
+
+def emp_salary_input() -> int:
+    while True:
+        salary = input("Please enter the department budget: ")
+        if validate_salary(salary):
+            return int(salary)
+
 def add_emp_prompt(emp_list, employee_file, dept_list, dept_file):
     emp_fname = input("Enter first name: ")
     emp_lname = input("Enter last name: ")
