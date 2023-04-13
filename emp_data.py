@@ -139,11 +139,14 @@ def validate_salary(salary: str) -> bool:
             if salary_value >= 45000:
                 return True
             elif salary_value > 0 and salary_value < 45000:
-                print(LowSalaryException(salary))
+                #print(LowSalaryException(salary))
+                raise LowSalaryException(salary)
             else:
                 raise ValueError
         else:
             raise TypeError
+    except LowSalaryException as e:
+        print(e)
     except ValueError:
         inform_value_error(salary)
     except TypeError:
@@ -160,11 +163,13 @@ def validate_budget(budget: str) -> bool:
             if budget_value >= 60000:
                 return True
             elif budget_value > 0 and budget_value < 60000:
-                print(LowBudgetException(budget))
+                raise LowBudgetException(budget)
             else:
                 raise ValueError
         else:
             raise TypeError
+    except LowBudgetException as e:
+        print(e)
     except ValueError:
         inform_value_error(budget)
     except TypeError:
@@ -186,11 +191,11 @@ def validate_phone(number: str) -> bool:
         if phone_match(number):
             return True
         else:
-            raise ContactNumberException
+            raise ContactNumberException(number)
     except TypeError:
         inform_type_error('string', number)
-    except ContactNumberException:
-        print(ContactNumberException(number))
+    except ContactNumberException as e:
+        print(e)
     except:
         print(f"Error detected regarding the given phone number {number=}")
     
