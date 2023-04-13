@@ -4,6 +4,7 @@ import list_comp
 from employee import *
 from employee_file_read_write import *
 from department import *
+from dept_menu_functions import *
 
 emp_list = []
 dept_list = []
@@ -168,16 +169,10 @@ def main():
                                 # ADD DEPARTMENTT
                                 # add_dept()
                                 # To do: Make a function to create a dept
-                                dept_name = input("Enter Department name: ")
-                                dept_code = input("Enter the dept code: ")
-                                dept_contact_number = input("Enter the contact num in this format: 123-4567: ")
-                                dept_budget = int(input("Please enter the budget: "))
-                                dept_company_name = input("Please enter the company name: ")
-                                new_dept = Department(dept_name, dept_code, dept_contact_number, dept_budget, dept_company_name)
-                                dept_list.append(new_dept)
+                                create_department(dept_list)
                                 try:
                                     write_to_yaml(dept_list, department_file)
-                                    print("\n~~Department Succesfully Added!~~")
+                                    #print("\n~~Department Succesfully Added!~~")
                                 except Exception:
                                     print("Something went wrong with adding department to file")    
                                 input("\nEnter any key to return to Department Menu. ")
@@ -186,22 +181,21 @@ def main():
                             case '2':
                                 # REMOVE DEPARTMENT
                                 # remove_dept()
-  
-                            
+                                remove_department(dept_list)
                                 input("\nEnter any key to return to Department Menu. ")
                                 print("Returning to Department Menu.....")
                                 continue
                             case '3':
                                 # UPDATE DEPARTMENT
                                 # update_dept()
-                            
+                                edit_department(dept_list)
                                 input("\nEnter any key to return to Department Menu. ")
                                 print("Returning to Department Menu.....")
                                 continue
                             case '4':
                                 # LIST DEPARTMENT INFO (OPTIONAL LIST COMPREHENSION)
                                 # list_dept()
-                            
+                                list_department(dept_list)
                                 input("\nEnter any key to return to Department Menu. ")
                                 print("Returning to Departmentt Menu.....")
                                 continue
