@@ -77,7 +77,6 @@ def main():
                             case '1':
                                 # ADD EMPLOYEE
                                 try:
-
                                     add_emp_prompt(emp_list, employee_file, dept_list, department_file)
                                 except:
                                     print("Couldn't create the employee")
