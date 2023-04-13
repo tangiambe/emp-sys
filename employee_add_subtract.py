@@ -36,7 +36,6 @@ def add_emp(emp_list, employee_file,emp_fname,emp_lname,emp_doe,emp_salary,dept_
     emp_list.append(new_emp)
     try:
         write_to_yaml(emp_list, employee_file)
-        print("\n~~Employee Succesfully Added!~~")
     except Exception:
         print("Something went wrong with adding employee to file")
     return emp_list
@@ -50,7 +49,6 @@ def remove_emp(del_key,emp_list,employee_file):
             if Employee.get_id(emp) == del_key:
                 emp_list.remove(emp)
                 found = True
-                print("\n~~Employee Succesfully Removed!~~")
                 break
     if found:
             write_to_yaml(emp_list, employee_file)
@@ -81,7 +79,7 @@ def update_emp(emp_list,employee_file):
 
             #Determine which values to change
             while (selection == True):
-                print("Which field would you like to edit?")
+                print("\nWhich field would you like to edit?")
                 print("1: First Name")
                 print("2: Last Name")
                 print("3: Date of Employment")
@@ -92,20 +90,20 @@ def update_emp(emp_list,employee_file):
                 choice = input("")
 
                 if (choice == "1"):
-                    emp_fname = input("Enter first name: ")
-                    print("First name edited!")
+                    emp_fname = input("Enter new first name: ")
+                    print("\nFirst name edited!\n")
                 elif(choice == "2"):
-                    emp_lname = input("Enter last name: ")
-                    print("Last name edited!")
+                    emp_lname = input("Enter new last name: ")
+                    print("\nLast name edited!\n")
                 elif(choice == "3"):
-                    emp_doe = input ("Enter date of employment (YYYY MM DD): ")
-                    print("Employment date edited!")
+                    emp_doe = input ("Enter new date of employment (YYYY MM DD): ")
+                    print("\nEmployment date edited!\n")
                 elif(choice == "4"):
-                    emp_salary = int(input("Enter salary: "))
-                    print("Salary edited!")
+                    emp_salary = int(input("Enter new salary: "))
+                    print("\nSalary edited!\n")
                 elif(choice == "5"):
-                    dept_code = input("Enter the dept code: ")
-                    print("Department code edited!")
+                    dept_code = input("Enter the new dept code: ")
+                    print("\nDepartment code edited!\n")
                 else:
                     selection = False
 

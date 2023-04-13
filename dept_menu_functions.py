@@ -42,46 +42,46 @@ def create_new_department() -> Department:
 def edit_department_name(dept: Department):
     new_name = dept_name_input()
     dept.set_dept_name(new_name)
-    print('Finished editing name')
+    print('\nFinished editing name')
 
 def edit_department_code(dept: Department):
-    print("WARNING YOU ARE EDITING THE DEPARTMENT CODE, THE CHANGES WILL NOT PROPAGATE TO CURRENT EMPLOYEES") # Can be done through list comphrehension
+    print("\nWARNING YOU ARE EDITING THE DEPARTMENT CODE, THE CHANGES WILL NOT PROPAGATE TO CURRENT EMPLOYEES") # Can be done through list comphrehension
     new_code = dept_code_input()
     dept.set_dept_name(new_code)
-    print('Finished editing code')
+    print('\nFinished editing department code')
 
 def edit_department_contact(dept: Department):
     new_contact = dept_contact_input()
     dept.set_contact(new_contact)
-    print('Finished editing contact number')
+    print('\nFinished editing contact number')
 
 def edit_department_budget(dept: Department):
     new_budget = dept_budget_input()
     dept.set_budget(new_budget)
-    print('Finished editing budget')
+    print('\nFinished editing budget')
     
 
 def edit_company_name(dept: Department):
     new_cmp_name = cmp_name_input()
     dept.set_company_name(new_cmp_name)
-    print('Finished editing company name')
+    print('\nFinished editing company name')
 
 def remove_deparment_from_list(dept_list: list, dept_code: str):
     dept = search_for_dept(dept_list, dept_code)
     if dept is not None:
         dept_list.remove(dept)
     else: 
-        print("Department not found, nothing was deleted.")
+        print("\nDepartment not found, nothing was deleted.")
 
 def print_edit_deparments_msg():
-    print("What would you like to edit?")
+    print("What would you like to EDIT?")
     print("1. Department Name\n2.Department Code\n3. Department Contact Number\n4. Department Budget\n5. Company Name\n0. To Exit\n")
 
 def print_create_department_msg():
-    print("You are creating a department")
+    print("You are CREATING a department\n")
 
 def print_remove_department_msg():
-    print("You are removing a department")
+    print("You are REMOVING a department\n")
 
 def welcome_dept_menu():
     print("Welcome to the department menu, you may create, edit, or remove departments here.")
@@ -132,7 +132,6 @@ def create_department(dept_list: list):
     print_create_department_msg()
     new_dept = create_new_department()
     dept_list.append(new_dept)
-    print(f"Sucessfully created a new department!\n{new_dept}")
 
 def remove_department(dept_list: list):
     print_remove_department_msg()
