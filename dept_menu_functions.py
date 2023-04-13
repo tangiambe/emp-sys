@@ -26,7 +26,7 @@ def dept_contact_input() -> str:
 def dept_budget_input() -> int:
     while True:
         budget = input("Please enter the department budget: ")
-        if validate_salary(budget):
+        if validate_budget(budget):
             return int(budget)
     
 def create_new_department() -> Department:

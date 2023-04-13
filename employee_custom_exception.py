@@ -10,13 +10,13 @@ class LowBudgetException(Exception):
     def __init__(self, budget):
         self.budget = budget
     def __str__(self):
-        return("Budget of"+ self.budget +" is too low to be assigned as a budget for a department!")
+        return("Budget of "+ self.budget +" is too low to be assigned as a budget for a department!")
     
 class LowSalaryException(Exception):
     def __init__(self, salary):
         self.salary = salary
     def __str__(self):
-        return("Salary of"+ self.salary +" is too low to be assigned to an employee!")
+        return("Salary of "+ self.salary +" is too low to be assigned to an employee!")
     
 class ContactNumberException(Exception):
     def __init__(self, number):
