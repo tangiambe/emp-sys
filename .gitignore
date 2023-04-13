@@ -4,3 +4,5 @@ __pycache__/employee.cpython-311.pyc
 *.yaml
 *.pyc
 *.pyc
+__pycache__/employee.cpython-311.pyc
+__pycache__/employee_file_read_write.cpython-311.pyc
