@@ -14,22 +14,22 @@ dept_list = []
 
 def main_menu(company_name: str):
     print(
-        f"\n************ {company_name.capitalize()} Management System ***************")
-    print("\n1) Manage Employees          2) Manage Departments             0) Log Out\n")
+        f"\n              ************** {company_name.capitalize()} Management System ***************")
+    print("\n           1) Manage Employees      2) Manage Departments       0) Log Out")
 
 
 def emp_menu():
-    print("\n************* Employee Management ***************")
-    print("1) Add Employee          2) Remove Employee")
-    print("3) Update Employee       4) List Employee Information")
-    print("0) Return to Main Menu")
+    print("\n            ************* Employee Management ***************\n")
+    print("              1) Add Employee                2) Remove Employee")
+    print("              3) Update Employee             4) List Employee Information")
+    print("              0) Return to Main Menu")
 
 
 def dept_menu():
-    print("\n************* Department Management ***************")
-    print("1) Add Department          2) Remove Department")
-    print("3) Update Departmentt      4) List Department Information")
-    print("0) Return to Main Menu")
+    print("\n              ************ Department Management ***************\n")
+    print("               1) Add Department             2) Remove Department")
+    print("               3) Update Departmentt         4) List Department Information")
+    print("               0) Return to Main Menu")
     
 def return_to_menu(menu_type:str):
     input(f"\nEnter any key to return to {menu_type}: ")
@@ -40,8 +40,7 @@ def main():
     global emp_list
     global dept_list
 
-    company = input(
-        "Welcome! Type the name of your company to access its database: ").lower()
+    company = input("\nWelcome! Type the name of your company to access its database: ").lower()
 
     employee_file = company+"/"+company+"__employee_info.yaml"
 
@@ -68,7 +67,7 @@ def main():
         try:
             match option:
                 case '0':
-                    print("Logging Out......Bye Bye!")
+                    print("\n               *************** Logging Out...... Bye Bye! ***************\n")
                     sys.exit()
 
                 # EMPLOYEE MENU

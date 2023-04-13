@@ -47,7 +47,7 @@ def verify_dept(code, dept_list, dept_file):
                 dept_found = True
                 return code
         if not dept_found:
-            print(f"Department '{code}' does not exist!\nAssigning DEFAULT Department...")  
+            print(f"\nDepartment '{code}' does not exist!\nAssigning DEFAULT Department Code....")  
             code = Department.DEFAULT_CODE
             dept_list.append(Department(dept_code= code))
             try:
@@ -119,19 +119,19 @@ def update_emp(emp_list,employee_file):
 
                 if (choice == "1"):
                     emp_fname = input("Enter new first name: ")
-                    print("\nFirst name edited!\n")
+                    print("\nFirst name edited!")
                 elif(choice == "2"):
                     emp_lname = input("Enter new last name: ")
-                    print("\nLast name edited!\n")
+                    print("\nLast name edited!")
                 elif(choice == "3"):
                     emp_doe = input ("Enter new date of employment (YYYY MM DD): ")
-                    print("\nEmployment date edited!\n")
+                    print("\nEmployment date edited!")
                 elif(choice == "4"):
                     emp_salary = int(input("Enter new salary: "))
-                    print("\nSalary edited!\n")
+                    print("\nSalary edited!")
                 elif(choice == "5"):
                     dept_code = input("Enter the new dept code: ")
-                    print("\nDepartment code edited!\n")
+                    print("\nDepartment code edited!")
                 else:
                     selection = False
 
