@@ -156,16 +156,26 @@ def main():
                                 # REMOVE DEPARTMENT
                                 # remove_dept()
                                 remove_department(dept_list)
-                                input(
-                                    "\nEnter any key to return to Department Menu. ")
+
+                                try:
+                                    write_to_yaml(dept_list, department_file)
+                                    #print("\n~~Department Succesfully Added!~~")
+                                except Exception:
+                                    print("Something went wrong with adding department to file")    
+                                input("\nEnter any key to return to Department Menu. ")
                                 print("Returning to Department Menu.....")
                                 continue
                             case '3':
                                 # UPDATE DEPARTMENT
                                 # update_dept()
                                 edit_department(dept_list)
-                                input(
-                                    "\nEnter any key to return to Department Menu. ")
+
+                                try:
+                                    write_to_yaml(dept_list, department_file)
+                                    #print("\n~~Department Succesfully Added!~~")
+                                except Exception:
+                                    print("Something went wrong with adding department to file")    
+                                input("\nEnter any key to return to Department Menu. ")
                                 print("Returning to Department Menu.....")
                                 continue
                             case '4':
