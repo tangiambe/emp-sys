@@ -49,12 +49,14 @@ def main():
         print("Employee list for Company "+company +
               " not found, creating new employee list")
         os.mkdir(company)
+        write_to_yaml([],employee_file)
 
     try:
         dept_list = import_from_yaml(department_file)
     except Exception:
         print("Department list for Company "+company +
               " not found, creating new department list")
+        write_to_yaml([],department_file)
 
     while True:
         main_menu(company)
