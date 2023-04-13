@@ -53,7 +53,7 @@ def main():
     except Exception:
         print("Department list for Company "+company +
               " not found, creating new department list")
-
+    emp_id_set = generate_id_set(emp_list) #generate set to check ID's
     while True:
         main_menu(company)
         option = input("\nPick an option: ")
@@ -67,6 +67,7 @@ def main():
                 case '1':
                     while True:
                         emp_menu()
+                        emp_id_set = generate_id_set(emp_list) #generate set to check ID's
                         option = input("\nPick an option: ")
                         match option:
                             case '0':
