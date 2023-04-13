@@ -1,7 +1,7 @@
 import sys
 from datetime import datetime
 from employee import *
-import main
+from main import *
 
 
 def emp_info(emp_list):
@@ -13,15 +13,14 @@ def emp_info(emp_list):
     """
     print("\n************* Employee Information ***************")
     print("1) Years of Employment     2) Salary")
-    print("3) Department              4) All Employees")
+    print("3) Department              4) All Employee Information")
     print("0) Back to Main Menu")
-
 
     info = input("\nFilter by: ")
 
     match info:
         case '0':
-            main.main()
+            main()
 
         case '1':
             todays_date = datetime.today().strftime('%Y %m %d')
@@ -78,9 +77,9 @@ def emp_info(emp_list):
             pass
 
         case '4':
-            print(f"There are {len(emp_list)} employees:")
+            print(f"There are {len(emp_list)} employees:\n")
             for emp in emp_list:
-                print(emp)
+                print(emp, "\n")
 
 
 emp1 = Employee("Alessi", "Reiter", "2022 05 12", 50000, "python")
@@ -95,5 +94,4 @@ emp8 = Employee("sam", "pucket", "2022 12 12", 50000, "python")
 emp_list = [emp1, emp2, emp3, emp4, emp5, emp6, emp7, emp8]
 
 if __name__ == "__main__":
-    # emp_info(emp_list)
-    pass
+    emp_info(emp_list)
