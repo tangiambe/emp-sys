@@ -97,9 +97,9 @@ def validate_day(day:str, month:str, year:str) -> bool:
                 return True
             elif (year % 4 != 0) and month == 2 and day <= 27 and day >= MIN_DAY:
                 return True
-            elif day <= MAX_DAY_ODD and day >= MIN_DAY and (month % 2 == 1):
+            elif day <= MAX_DAY_ODD and day >= MIN_DAY and ((month % 2 == 1) or month == 12):
                 return True
-            elif day <= MAX_DAY_EVEN and day >= MIN_DAY and (month % 2 == 0):
+            elif day <= MAX_DAY_EVEN and day >= MIN_DAY and ((month % 2 == 0) and month != 12):
                 return True
             else:
                 raise ValueError
