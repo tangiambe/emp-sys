@@ -41,7 +41,11 @@ def validate_name(name: str) -> bool:
             return True
     except:
         print("Error occured processing the name")
-        
+
+def validate_employee_id(set_of_ids: set, id_to_check: str) -> bool:
+    id_sub = set(id_to_check)
+    return id_sub.issubset(set_of_ids)
+    
 def validate_doe(doe: list) -> bool:
     date_split = doe.split()
     year = date_split[0]
@@ -132,7 +136,7 @@ def validate_salary(salary: str) -> bool:
             if salary_value >= 45000:
                 return True
             elif salary_value > 0 and salary_value < 45000:
-                raise LowSalaryException
+                print(LowSalaryException(salary))
             else:
                 raise ValueError
         else:
@@ -153,7 +157,7 @@ def validate_budget(budget: str) -> bool:
             if budget_value >= 60000:
                 return True
             elif budget_value > 0 and budget_value < 60000:
-                raise LowBudgetException
+                print(LowBudgetException(budget))
             else:
                 raise ValueError
         else:
@@ -182,6 +186,8 @@ def validate_phone(number: str) -> bool:
             raise ContactNumberException
     except TypeError:
         inform_type_error('string', number)
+    except ContactNumberException:
+        print(ContactNumberException(number))
     except:
         print(f"Error detected regarding the given phone number {number=}")
     
