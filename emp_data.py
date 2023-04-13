@@ -11,11 +11,23 @@ MIN_DAY = 1
 MAX_MONTH = 12
 MIN_MONTH = 1
 
-def validate_names(first_name: str, last_name: str) -> bool:
-    if first_name.isalpha() and last_name.isalpha():
-        return True
-    else:
+def inform_type_error(expected: str, var):
+    print(f"Expected a {expected} value, was given a {type(var)}, {var=}")
+
+def inform_value_error(val):
+    print(f'Given value ({val}) is not allowed for this field')
+
+def validate_alpha(string: str) -> bool:
+    try:
+        if string.isalpha():
+            return True
+    except TypeError:
+        inform_type_error('string', string)
+    except ValueError:
+        inform_value_error(string)
+    finally:
         return False
+    
     
 def validate_doe(doe: list) -> bool:
     date_split = doe.split()
@@ -26,70 +38,82 @@ def validate_doe(doe: list) -> bool:
         if year.isdigit() and month.isdigit() and day.isdigit():
             if validate_year(year) and validate_month(month) and validate_day(day, month, year):
                 return True
+            else: raise Exception
+    except:
+        print('Invalid Input detected regarding the date. Please check. Format must be a string of YYYY MM DD')
+    finally:
+        return False
+        
+
+def validate_year(year:str) -> bool:
+    try:
+        if year.isdigit():
+            year = int(year)
+            if year <= MAX_YEAR and year >= MIN_YEAR:
+                return True
             else:
                 raise ValueError
         else:
             raise TypeError
     except TypeError:
-        print("Invalid DOB format! Please Enter Numbers")
-        return False
+        inform_type_error('int', year) 
+        print('Expected digit characters in a string')
     except ValueError:
-        print("Invalid numbers, please enter appropriate numbers within the range")
-        return False
-    except:
-        return False
-
-def validate_year(year:str) -> bool:
-    try:
-        year = int(year)
-        if year <= MAX_YEAR and year >= MIN_YEAR:
-            return True
-        else:
-            raise ValueError
-        
-    except ValueError:
-        print("Year is not a acceptable number")
-        return False
+        inform_value_error(year)
     except:
         print("Year must be an integer")
+    finally:
         return False
+        
     
 def validate_month(month:str) -> bool:
     try:
-        month = int(month)
-        if month <= MAX_MONTH and month >= MIN_MONTH:
-            return True
-        else:
-                raise ValueError
+        if month.isdigit():
+            month = int(month)
+            if month <= MAX_MONTH and month >= MIN_MONTH:
+                return True
+            else:
+                    raise ValueError
+        else: raise TypeError
         
+    except TypeError:
+        print('Expected digit characters in a string')
+        inform_type_error('int', month)    
     except ValueError:
-        print("Year is not a acceptable number")
-        return False
+        inform_value_error(month)
     except:
-        print("Year must be an integer")
+        print("Month must be an integer")
+    finally:
         return False
 
 def validate_day(day:str, month:str, year:str) -> bool:
     try:
-        year = int(year)
-        day = int(day)
-        month = int(month)
+        if day.isdigit():
+            year = int(year)
+            day = int(day)
+            month = int(month)
 
-        if (year % 4 == 0) and month == 2 and day <= 28 and day >= MIN_DAY:
-            return True
-        elif (year % 4 != 0) and month == 2 and day <= 27 and day >= MIN_DAY:
-            return True
-        elif day <= MAX_DAY_ODD and day >= MIN_DAY and (month % 2 == 1):
-            return True
-        elif day <= MAX_DAY_EVEN and day >= MIN_DAY and (month % 2 == 0):
-            return True
-        else:
-            raise ValueError
+            if (year % 4 == 0) and month == 2 and day <= 28 and day >= MIN_DAY:
+                return True
+            elif (year % 4 != 0) and month == 2 and day <= 27 and day >= MIN_DAY:
+                return True
+            elif day <= MAX_DAY_ODD and day >= MIN_DAY and (month % 2 == 1):
+                return True
+            elif day <= MAX_DAY_EVEN and day >= MIN_DAY and (month % 2 == 0):
+                return True
+            else:
+                raise ValueError
+        else: raise TypeError
         
+    except TypeError:
+        print('Expected digit characters in a string')
+        inform_type_error('int', day)    
     except ValueError:
-        print(f"Day ({day}) is not within range of the specicifed month ({month})")
+        inform_value_error(day)
     except:
-        print(f"Day must be an integer. (Was given {day})")
+        print("day must be an integer")
+    finally:
+        return False
 
 def validate_salary(salary: int) -> bool:
     try:
@@ -97,14 +121,20 @@ def validate_salary(salary: int) -> bool:
             return True
         elif salary is int and salary < 0:
             raise ValueError
-        else:
+        elif salary is not int:
             raise TypeError
+        else: raise Exception
     except ValueError:
-        print(f"Negative value detected for salary! Was given: {salary}")
+        inform_value_error(salary)
     except TypeError:
-        print(f"Wrong type, expected integer. Got a {type(salary)}")
+        inform_type_error('int', salary)
+    except:
+        print('Error regarding the given salary')
+    finally:
+        return False
 
-def match_found(match) -> bool:
+def phone_match(contact_number: str) -> bool:
+    match = re.match(r'([0-9]{3}-[0-9]{4})', contact_number)
     if match is None:
         return False
     else:
@@ -112,9 +142,10 @@ def match_found(match) -> bool:
 
 def validate_phone(number: str) -> bool:
     try:
-        match = re.match(r'([0-9]{3}-[0-9]{4})', '000-0000')
-        return match_found(match)
+        return phone_match(number)
     except TypeError:
-        print("Wrong type! Expected String in 000-0000 format")
+        inform_type_error('string', number)
     except:
-        print("Error detected")
+        print(f"Error detected regarding the given phone number {number=}")
+    finally:
+        return False
