@@ -57,7 +57,7 @@ def validate_year(year:str) -> bool:
             raise TypeError
     except TypeError:
         inform_type_error('int', year) 
-        print('Expected digit characters in a string')
+        print('Expected digit characters in a string for YYYY')
     except ValueError:
         inform_value_error(year)
     except:
@@ -77,7 +77,7 @@ def validate_month(month:str) -> bool:
         else: raise TypeError
         
     except TypeError:
-        print('Expected digit characters in a string')
+        print('Expected digit characters in a string for MM')
         inform_type_error('int', month)    
     except ValueError:
         inform_value_error(month)
@@ -106,7 +106,7 @@ def validate_day(day:str, month:str, year:str) -> bool:
         else: raise TypeError
         
     except TypeError:
-        print('Expected digit characters in a string')
+        print('Expected digit characters in a string for DD')
         inform_type_error('int', day)    
     except ValueError:
         inform_value_error(day)
