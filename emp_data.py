@@ -42,6 +42,12 @@ def validate_name(name: str) -> bool:
     except:
         print("Error occured processing the name")
 
+def validate_employee_id(list_of_ids: list, id_to_check: str) -> bool:
+    for id in list_of_ids:
+        if id == id_to_check:
+            return False
+    return True
+
 def validate_doe(doe: list) -> bool:
     date_split = doe.split()
     year = date_split[0]
@@ -182,6 +188,8 @@ def validate_phone(number: str) -> bool:
             raise ContactNumberException
     except TypeError:
         inform_type_error('string', number)
+    except ContactNumberException:
+        print(ContactNumberException(number))
     except:
         print(f"Error detected regarding the given phone number {number=}")
     
