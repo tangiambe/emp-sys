@@ -1,4 +1,5 @@
 import sys
+import os
 import list_comp
 from employee import *
 from employee_file_read_write import *
@@ -25,23 +26,21 @@ def main():
     global emp_list
     global dept_list
     
-    company = input(
-        "Welcome! Type the name of your company to access its database: ").lower()
+    company = input("Welcome! Type the name of your company to access its database: ").lower()
+    
+    employee_file = company+"/"+company+"__employee_info.yaml"
 
-    employee_file = company+"__employee_info.yaml"
-
-    department_file = company+"__department_info.yaml"
+    department_file = company+"/"+company+"__department_info.yaml"
 
     try:
         emp_list = import_from_yaml(employee_file)
     except Exception:
-        print("Employee list for Company "+company +
-              " not found, creating new employee list")
+        print("Employee list for Company "+company+" not found, creating new employee list")
+        os.mkdir(company)
     try:
         dept_list = import_from_yaml(department_file)
     except Exception:
-        print("Department list for Company "+company +
-              " not found, creating new department list")
+        print("Department list for Company "+company+" not found, creating new department list")
 
     while True:
         menu_choices()
@@ -64,6 +63,11 @@ def main():
                         new_dept = Department(
                             dept_name, dept_code, dept_contact_number, dept_budget, dept_company_name)
                         dept_list.append(new_dept)
+                        try:
+                            write_to_yaml(dept_list, department_file)
+                            print("\n~~Department Succesfully Added!~~")
+                        except Exception:
+                            print("Something went wrong with adding department to file")
                         # To do: Make this into a function
                         emp_fname = input("Enter first name: ")
                         emp_lname = input("Enter last name: ")
