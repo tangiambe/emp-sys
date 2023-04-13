@@ -20,7 +20,7 @@ def dept_info(dept_list):
         info = input("\nChoose an option: ")
         match info:
             case '0':
-                dept_menu()
+                break
             case '1':
                 print(f"\nThere are {len(dept_list)} departments:\n")
                 for dept in dept_list:

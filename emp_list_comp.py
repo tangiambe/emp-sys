@@ -24,18 +24,18 @@ def emp_info(emp_list):
             case '0':
                 break
             case '1':
-                doe_filter()
+                doe_filter(emp_list)
             case '2':
-                salary_filter()
+                salary_filter(emp_list)
             case '3':
-                dept_filter()
+                dept_filter(emp_list)
             case '4':
                 print(f"There are {len(emp_list)} employees:\n")
                 for emp in emp_list:
                     print(emp, "\n")
 
 
-def doe_filter():
+def doe_filter(emp_list):
     todays_date = datetime.today().strftime('%Y %m %d')
     today = datetime.strptime(todays_date, "%Y %m %d")
 
@@ -61,7 +61,7 @@ def doe_filter():
         print(f"  > {i}")
 
 
-def salary_filter():
+def salary_filter(emp_list):
     # salary < 50K
     sal_50 = [emp.get_id()
               for emp in emp_list if (emp.get_salary() < 50000)]
@@ -71,7 +71,7 @@ def salary_filter():
 
     # 50K < salary < 100K
     sal_50_100 = [emp.get_id()
-                  for emp in emp_list if (50000 < emp.get_salary() < 100000)]
+                  for emp in emp_list if (50000 <= emp.get_salary() < 100000)]
     print(f"\n{len(sal_50_100)} people have a salary between $50K and $100K:")
     for i in sal_50_100:
         print(f"  > {i}")
@@ -84,7 +84,7 @@ def salary_filter():
         print(f"  > {i}")
 
 
-def dept_filter():
+def dept_filter(emp_list):
     # show all emps that have the user inputted dept code
     user_dept_code = input("Enter the department code:\n")
 
