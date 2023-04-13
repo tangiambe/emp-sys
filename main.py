@@ -76,8 +76,6 @@ def main():
                                 break
                             case '1':
                                 # ADD EMPLOYEE
-                                # add_emp()
-                                # To do: Make this into a function
                                 try:
                                     add_emp_prompt(
                                         emp_list, employee_file, dept_list, department_file)
@@ -86,37 +84,21 @@ def main():
 
                                 input(
                                     "\nEnter any key to return to Employee Menu: ")
+
                                 print("Returning to Employee Menu.....")
                                 continue
                             case '2':
                                 # REMOVE EMPLOYEE
-                                # remove_emp()
-                                del_key = input(
-                                    "Enter Employee ID to be removed: ")
-                                found = False
-                                for emp in emp_list:
-                                    if Employee.get_id(emp) == del_key:
-                                        emp_list.remove(emp)
-                                        found = True
-                                        print(
-                                            "\n~~Employee Succesfully Removed!~~")
-                                        break
 
-                                if found:
-                                    write_to_yaml(emp_list, employee_file)
-                                else:
-                                    print("Employee Not Found")
-
-                                input(
-                                    "\nEnter any key to return to Employee Menu: ")
+                                del_key = input("Enter Employee ID to be removed: ")
+                                remove_emp(del_key,emp_list,employee_file)
+                                input("\nEnter any key to return to Employee Menu: ")
                                 print("Returning to Employee Menu.....")
                                 continue
                             case '3':
                                 # UPDATE EMPLOYEE
-                                # update_emp()
-
-                                input(
-                                    "\nEnter any key to return to Employee Menu: ")
+                                update_emp(emp_list,employee_file)
+                                input("\nEnter any key to return to Employee Menu: ")
                                 print("Returning to Employee Menu.....")
                                 continue
                             case '4':
@@ -139,8 +121,6 @@ def main():
                                 break
                             case '1':
                                 # ADD DEPARTMENTT
-                                # add_dept()
-                                # To do: Make a function to create a dept
                                 create_department(dept_list)
                                 try:
                                     write_to_yaml(dept_list, department_file)
@@ -154,7 +134,6 @@ def main():
                                 continue
                             case '2':
                                 # REMOVE DEPARTMENT
-                                # remove_dept()
                                 remove_department(dept_list)
 
                                 try:
@@ -167,7 +146,6 @@ def main():
                                 continue
                             case '3':
                                 # UPDATE DEPARTMENT
-                                # update_dept()
                                 edit_department(dept_list)
 
                                 try:
