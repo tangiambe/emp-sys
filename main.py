@@ -94,7 +94,7 @@ def main():
                                 input("\nEnter any key to return to Employee Menu. ")
                                 print("Returning to Employee Menu.....")
                                 continue
-                           case '2':
+                            case '2':
                                 # REMOVE EMPLOYEE
                                 # remove_emp()
                                 del_key = input("Enter Employee ID to be removed: ")
