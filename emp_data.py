@@ -132,7 +132,7 @@ def validate_salary(salary: str) -> bool:
             if salary_value >= 45000:
                 return True
             elif salary_value > 0 and salary_value < 45000:
-                raise LowSalaryException
+                print(LowSalaryException(salary))
             else:
                 raise ValueError
         else:
@@ -153,13 +153,11 @@ def validate_budget(budget: str) -> bool:
             if budget_value >= 60000:
                 return True
             elif budget_value > 0 and budget_value < 60000:
-                raise LowBudgetException
+                print(LowBudgetException(budget))
             else:
                 raise ValueError
         else:
             raise TypeError
-    except LowBudgetException:
-        print("Budget is too low")
     except ValueError:
         inform_value_error(budget)
     except TypeError:
