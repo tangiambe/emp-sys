@@ -44,7 +44,10 @@ def validate_name(name: str) -> bool:
 
 def validate_employee_id(set_of_ids: set, id_to_check: str) -> bool:
     id_sub = set(id_to_check)
-    return id_sub.issubset(set_of_ids)
+    if id_sub.issubset(set_of_ids):
+        return False
+    else:
+        return True
     
 def validate_doe(doe: list) -> bool:
     date_split = doe.split()
