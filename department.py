@@ -25,6 +25,8 @@ class Department:
         return self.dept_contact
     def get_budget(self) -> str:
         return self.budget
+    def get_company(self) -> str:
+        return self.company_name
     
     def set_dept_name(self, name: str):
         self.dept_name = name
@@ -34,3 +36,5 @@ class Department:
         self.dept_contact = contact
     def set_budget(self, budget: int):
         self.budget = budget
+    def set_company_name(self, company: str):
+        self.company_name = company

@@ -2,6 +2,7 @@
 # This file provides function to check if the date specified as the date of employement or name is correct.
 
 import re
+from employee_custom_exception import *
 
 MAX_YEAR = 2023
 MIN_YEAR = 1923
@@ -20,15 +21,27 @@ def inform_value_error(val):
 def validate_alpha(string: str) -> bool:
     try:
         if string.isalpha():
-            return True
+            return string
+        else: raise ValueError
     except TypeError:
         inform_type_error('string', string)
+        return False
     except ValueError:
         inform_value_error(string)
-    finally:
+        return False
+    except:
+        print('Error occured with the given val when checking for alpha')
         return False
     
-    
+def validate_name(name: str) -> bool:
+    try:
+        if name == '' or name == ' ' or validate_alpha(name) == False:
+            raise NoNameException
+        else:
+            return True
+    except:
+        print("Error occured processing the name")
+        
 def validate_doe(doe: list) -> bool:
     date_split = doe.split()
     year = date_split[0]
@@ -41,10 +54,8 @@ def validate_doe(doe: list) -> bool:
             else: raise Exception
     except:
         print('Invalid Input detected regarding the date. Please check. Format must be a string of YYYY MM DD')
-    finally:
         return False
         
-
 def validate_year(year:str) -> bool:
     try:
         if year.isdigit():
@@ -61,11 +72,10 @@ def validate_year(year:str) -> bool:
     except ValueError:
         inform_value_error(year)
     except:
-        print("Year must be an integer")
-    finally:
-        return False
-        
+        print("Year must be whole number")
     
+    return False
+        
 def validate_month(month:str) -> bool:
     try:
         if month.isdigit():
@@ -82,9 +92,9 @@ def validate_month(month:str) -> bool:
     except ValueError:
         inform_value_error(month)
     except:
-        print("Month must be an integer")
-    finally:
-        return False
+        print("Month must be a whole number")
+    
+    return False
 
 def validate_day(day:str, month:str, year:str) -> bool:
     try:
@@ -97,9 +107,9 @@ def validate_day(day:str, month:str, year:str) -> bool:
                 return True
             elif (year % 4 != 0) and month == 2 and day <= 27 and day >= MIN_DAY:
                 return True
-            elif day <= MAX_DAY_ODD and day >= MIN_DAY and (month % 2 == 1):
+            elif day <= MAX_DAY_ODD and day >= MIN_DAY and ((month % 2 == 1) or month == 12):
                 return True
-            elif day <= MAX_DAY_EVEN and day >= MIN_DAY and (month % 2 == 0):
+            elif day <= MAX_DAY_EVEN and day >= MIN_DAY and ((month % 2 == 0) and month != 12):
                 return True
             else:
                 raise ValueError
@@ -111,27 +121,51 @@ def validate_day(day:str, month:str, year:str) -> bool:
     except ValueError:
         inform_value_error(day)
     except:
-        print("day must be an integer")
-    finally:
-        return False
+        print("day must be a whole number")
+    
+    return False
 
-def validate_salary(salary: int) -> bool:
+def validate_salary(salary: str) -> bool:
     try:
-        if salary is int and salary > 0:
-            return True
-        elif salary is int and salary < 0:
-            raise ValueError
-        elif salary is not int:
+        if salary.isdigit():
+            salary_value = int(salary)
+            if salary_value >= 45000:
+                return True
+            elif salary_value > 0 and salary_value < 45000:
+                raise LowSalaryException
+            else:
+                raise ValueError
+        else:
             raise TypeError
-        else: raise Exception
     except ValueError:
         inform_value_error(salary)
     except TypeError:
         inform_type_error('int', salary)
     except:
         print('Error regarding the given salary')
-    finally:
-        return False
+    
+    return False
+
+def validate_budget(budget: str) -> bool:
+    try:
+        if budget.isdigit():
+            budget_value = int(budget)
+            if budget_value >= 60000:
+                return True
+            elif budget_value > 0 and budget_value < 60000:
+                raise LowBudgetException
+            else:
+                raise ValueError
+        else:
+            raise TypeError
+    except ValueError:
+        inform_value_error(budget)
+    except TypeError:
+        inform_type_error('int', budget)
+    except:
+        print('Error regarding the given budget')
+    
+    return False
 
 def phone_match(contact_number: str) -> bool:
     match = re.match(r'([0-9]{3}-[0-9]{4})', contact_number)
@@ -142,10 +176,13 @@ def phone_match(contact_number: str) -> bool:
 
 def validate_phone(number: str) -> bool:
     try:
-        return phone_match(number)
+        if phone_match(number):
+            return True
+        else:
+            raise ContactNumberException
     except TypeError:
         inform_type_error('string', number)
     except:
         print(f"Error detected regarding the given phone number {number=}")
-    finally:
-        return False
+    
+    return False
