@@ -1,6 +1,7 @@
 import sys
 import os
 import emp_list_comp
+import dept_list_comp
 from employee import *
 from employee_file_read_write import *
 from department import *
@@ -12,7 +13,8 @@ dept_list = []
 
 
 def main_menu(company_name: str):
-    print(f"\n************ {company_name.capitalize()} Management System ***************")
+    print(
+        f"\n************ {company_name.capitalize()} Management System ***************")
     print("\n1) Manage Employees          2) Manage Departments             0) Log Out\n")
 
 
@@ -21,7 +23,8 @@ def emp_menu():
     print("1) Add Employee          2) Remove Employee")
     print("3) Update Employee       4) List Employee Information")
     print("0) Return to Main Menu")
-        
+
+
 def dept_menu():
     print("\n************* Department Management ***************")
     print("1) Add Department          2) Remove Department")
@@ -29,14 +32,13 @@ def dept_menu():
     print("0) Return to Main Menu")
 
 
-
 def main():
     global emp_list
     global dept_list
 
-    
-    company = input("Welcome! Type the name of your company to access its database: ").lower()
-    
+    company = input(
+        "Welcome! Type the name of your company to access its database: ").lower()
+
     employee_file = company+"/"+company+"__employee_info.yaml"
 
     department_file = company+"/"+company+"__department_info.yaml"
@@ -44,13 +46,15 @@ def main():
     try:
         emp_list = import_from_yaml(employee_file)
     except Exception:
-        print("Employee list for Company "+company+" not found, creating new employee list")
+        print("Employee list for Company "+company +
+              " not found, creating new employee list")
         os.mkdir(company)
-    
+
     try:
         dept_list = import_from_yaml(department_file)
     except Exception:
-        print("Department list for Company "+company+" not found, creating new department list")
+        print("Department list for Company "+company +
+              " not found, creating new department list")
 
     while True:
         main_menu(company)
@@ -60,8 +64,8 @@ def main():
                 case '0':
                     print("Logging Out......Bye Bye!")
                     sys.exit()
-                    
-                #EMPLOYEE MENU
+
+                # EMPLOYEE MENU
                 case '1':
                     while True:
                         emp_menu()
@@ -75,51 +79,56 @@ def main():
                                 # add_emp()
                                 # To do: Make this into a function
                                 try:
-                                    add_emp_prompt(emp_list, employee_file, dept_list, department_file)
+                                    add_emp_prompt(
+                                        emp_list, employee_file, dept_list, department_file)
                                 except:
                                     print("Couldn't create the employee")
-                                    
-                                input("\nEnter any key to return to Employee Menu: ")
+
+                                input(
+                                    "\nEnter any key to return to Employee Menu: ")
                                 print("Returning to Employee Menu.....")
                                 continue
                             case '2':
                                 # REMOVE EMPLOYEE
                                 # remove_emp()
-                                del_key = input("Enter Employee ID to be removed: ")
+                                del_key = input(
+                                    "Enter Employee ID to be removed: ")
                                 found = False
                                 for emp in emp_list:
                                     if Employee.get_id(emp) == del_key:
                                         emp_list.remove(emp)
                                         found = True
-                                        print("\n~~Employee Succesfully Removed!~~")
+                                        print(
+                                            "\n~~Employee Succesfully Removed!~~")
                                         break
-                                    
+
                                 if found:
                                     write_to_yaml(emp_list, employee_file)
                                 else:
                                     print("Employee Not Found")
-                            
-                                input("\nEnter any key to return to Employee Menu: ")
+
+                                input(
+                                    "\nEnter any key to return to Employee Menu: ")
                                 print("Returning to Employee Menu.....")
                                 continue
                             case '3':
                                 # UPDATE EMPLOYEE
                                 # update_emp()
-                            
-                                input("\nEnter any key to return to Employee Menu: ")
+
+                                input(
+                                    "\nEnter any key to return to Employee Menu: ")
                                 print("Returning to Employee Menu.....")
                                 continue
                             case '4':
                                 # LIST EMPLOYEE INFO (LIST COMPREHENSION)
                                 emp_list_comp.emp_info(emp_list)
-                            
-                            
                                 print("Returning to Employee Menu.....")
                                 continue
                             case _:
-                                print("~Error: Invalid Input! PLEASE ENTER A VALID OPTION.~\n")
-  
-                #DEPARTMENT MENU
+                                print(
+                                    "~Error: Invalid Input! PLEASE ENTER A VALID OPTION.~\n")
+
+                # DEPARTMENT MENU
                 case '2':
                     while True:
                         dept_menu()
@@ -135,16 +144,19 @@ def main():
                                 create_department(dept_list)
                                 try:
                                     write_to_yaml(dept_list, department_file)
-                                    #print("\n~~Department Succesfully Added!~~")
+                                    # print("\n~~Department Succesfully Added!~~")
                                 except Exception:
-                                    print("Something went wrong with adding department to file")    
-                                input("\nEnter any key to return to Department Menu. ")
+                                    print(
+                                        "Something went wrong with adding department to file")
+                                input(
+                                    "\nEnter any key to return to Department Menu. ")
                                 print("Returning to Department Menu.....")
                                 continue
                             case '2':
                                 # REMOVE DEPARTMENT
                                 # remove_dept()
                                 remove_department(dept_list)
+
                                 try:
                                     write_to_yaml(dept_list, department_file)
                                     #print("\n~~Department Succesfully Added!~~")
@@ -157,6 +169,7 @@ def main():
                                 # UPDATE DEPARTMENT
                                 # update_dept()
                                 edit_department(dept_list)
+
                                 try:
                                     write_to_yaml(dept_list, department_file)
                                     #print("\n~~Department Succesfully Added!~~")
@@ -168,15 +181,19 @@ def main():
                             case '4':
                                 # LIST DEPARTMENT INFO (OPTIONAL LIST COMPREHENSION)
                                 # list_dept()
-                                list_department(dept_list)
-                                input("\nEnter any key to return to Department Menu. ")
+                                # list_department(dept_list)
+                                dept_list_comp.dept_info(dept_list)
+                                input(
+                                    "\nEnter any key to return to Department Menu. ")
                                 print("Returning to Departmentt Menu.....")
                                 continue
                             case _:
-                                print("~Error: Invalid Input! PLEASE ENTER A VALID OPTION.~\n")
+                                print(
+                                    "~Error: Invalid Input! PLEASE ENTER A VALID OPTION.~\n")
 
         except Exception:
             print("Error, something went wrong. Returning to main menu")
+
 
 if __name__ == "__main__":
     main()
