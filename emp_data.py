@@ -42,11 +42,10 @@ def validate_name(name: str) -> bool:
     except:
         print("Error occured processing the name")
 
-def validate_employee_id(list_of_ids: list, id_to_check: str) -> bool:
-    for id in list_of_ids:
-        if id == id_to_check:
-            return False
-    return True
+def validate_employee_id(set_of_ids: set, id_to_check: str) -> bool:
+    id_sub = set(id_to_check)
+    return id_sub.issubset(set_of_ids)
+    
 
 def validate_doe(doe: list) -> bool:
     date_split = doe.split()
