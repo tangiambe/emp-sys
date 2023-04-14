@@ -33,7 +33,7 @@ def dept_menu():
     
 def return_to_menu(menu_type:str):
     input(f"\nEnter any key to return to {menu_type}: ")
-    print(f"Returning to {menu_type}.....")
+    print(f"\nReturning to {menu_type}.....")
 
 
 def main():
@@ -79,7 +79,7 @@ def main():
                         option = input("\nPick an option: ")
                         match option:
                             case '0':
-                                print("Returning to Main Menu......")
+                                print("\nReturning to Main Menu......")
                                 break
                             case '1':
                                 # ADD EMPLOYEE
@@ -115,7 +115,7 @@ def main():
                             case '4':
                                 # LIST EMPLOYEE INFO (LIST COMPREHENSION)
                                 emp_list_comp.emp_info(emp_list)
-                                print("Returning to Employee Menu.....")
+                                print("\nReturning to Employee Menu.....")
                                 continue
                             case _:
                                 print(
@@ -128,7 +128,7 @@ def main():
                         option = input("\nPick an option: ")
                         match option:
                             case '0':
-                                print("Returning to Main Menu......")
+                                print("\nReturning to Main Menu......")
                                 break
                             case '1':
                                 # ADD DEPARTMENTT
@@ -166,7 +166,7 @@ def main():
                             case '4':
                                 # LIST DEPARTMENT INFO (OPTIONAL LIST COMPREHENSION)
                                 dept_list_comp.dept_info(dept_list)
-                                print("Returning to Department Menu.....")
+                                print("\nReturning to Department Menu.....")
                                 continue
                             case _:
                                 print(

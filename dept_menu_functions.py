@@ -86,16 +86,16 @@ def remove_deparment_from_list(dept_list: list, dept_code: str):
 
 
 def print_edit_deparments_msg():
-    print("What would you like to EDIT?")
+    print("\nWhat would you like to EDIT?")
     print("1. Department Name\n2. Department Code\n3. Department Contact Number\n4. Department Budget\n5. Company Name\n0. To Exit\n")
 
 
 def print_create_department_msg():
-    print("You are CREATING a department\n")
+    print("\nYou are CREATING a department\n")
 
 
 def print_remove_department_msg():
-    print("You are REMOVING a department\n")
+    print("\nYou are REMOVING a department\n")
 
 
 def welcome_dept_menu():
