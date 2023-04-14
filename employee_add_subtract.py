@@ -32,11 +32,13 @@ def emp_salary_input() -> int:
             return int(salary)
 
 def add_emp_prompt(emp_list, employee_file, dept_list, dept_file):
+    #Add an employee with user input
     emp_fname = emp_first_name_input()
     emp_lname = emp_last_name_input()
     emp_doe = emp_doe_input()
     emp_salary = emp_salary_input()
     dept_code = input("Enter the dept code: ")
+    #Add new employee with information given by user
     return(add_emp(emp_list, employee_file,emp_fname,emp_lname,emp_doe,emp_salary,verify_dept(dept_code, dept_list, dept_file)))
 
 def verify_dept(code, dept_list, dept_file):
@@ -60,8 +62,10 @@ def verify_dept(code, dept_list, dept_file):
             break
 
 def add_emp(emp_list, employee_file,emp_fname,emp_lname,emp_doe,emp_salary,dept_code):
+    #Add new employee without any prompts
     new_emp = Employee(emp_fname, emp_lname, emp_doe, emp_salary, dept_code)
     emp_list.append(new_emp)
+    #Update file with updated list
     try:
         write_to_yaml(emp_list, employee_file)
     except Exception:
@@ -71,6 +75,7 @@ def add_emp(emp_list, employee_file,emp_fname,emp_lname,emp_doe,emp_salary,dept_
 
 
 def remove_emp(del_key,emp_list,employee_file):
+    #Remove an employee
 
     found = False
     for emp in emp_list:
@@ -78,6 +83,7 @@ def remove_emp(del_key,emp_list,employee_file):
                 emp_list.remove(emp)
                 found = True
                 break
+    #Update file
     if found:
             write_to_yaml(emp_list, employee_file)
     else:
@@ -105,7 +111,11 @@ def update_emp(emp_list,employee_file):
 
             selection = True
 
-            #Determine which values to change
+            """
+            Determine which values to change
+            by having user select values
+            from a menu
+            """
             while (selection == True):
                 print("\nWhich field would you like to edit?")
                 print("1: First Name")
