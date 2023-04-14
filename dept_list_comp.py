@@ -4,9 +4,9 @@ from main import *
 
 
 def dept_info_menu():
-    print("\n************* Department Information ***************")
-    print("1) All Departments           2) Select Department")
-    print("0) Back to Department Management")
+    print("\n               ************* Department Information ***************\n")
+    print("                   1) All Departments        2) Select Department")
+    print("                   0) Back to Department Management")
 
 
 def dept_info(dept_list):
@@ -43,10 +43,10 @@ def select_dept(dept_list):
 
 
 if __name__ == "__main__":
-    dept1 = Department("Name", "code", "###-####", 100, "cognixia")
-    dept2 = Department("janitor", "jan", "123-####", 1000, "cognixia")
-    dept3 = Department("driver", "dri", "321-####", 2500, "amazon")
-    dept4 = Department("Sales", "sal", "123-4568", 2020, "company")
+    # dept1 = Department("Name", "code", "###-####", 100, "cognixia")
+    # dept2 = Department("janitor", "jan", "123-####", 1000, "cognixia")
+    # dept3 = Department("driver", "dri", "321-####", 2500, "amazon")
+    # dept4 = Department("Sales", "sal", "123-4568", 2020, "company")
 
-    dept_info(dept_list=[dept1, dept2, dept3, dept4])
+    # dept_info(dept_list=[dept1, dept2, dept3, dept4])
     pass
