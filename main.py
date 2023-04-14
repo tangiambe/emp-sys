@@ -46,6 +46,7 @@ def main():
 
     department_file = company+"/"+company+"__department_info.yaml"
 
+    #Try loading employee file, if it doesn't exist, create dummy file and directory
     try:
         emp_list = import_from_yaml(employee_file)
     except Exception:
@@ -54,6 +55,7 @@ def main():
         os.mkdir(company)
         write_to_yaml([],employee_file)
 
+    #Try loading department file, if it doesn't exist, create dummy file    
     try:
         dept_list = import_from_yaml(department_file)
     except Exception:
