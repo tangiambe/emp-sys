@@ -1,5 +1,5 @@
 class Department:
-    
+    # Default values if no input is given
     DEFAULT_NAME = 'default'
     DEFAULT_CODE = 'aaa'
     DEFAULT_CONTACT = '555-5555'
@@ -14,7 +14,7 @@ class Department:
         self.budget = dept_budget
         self.company_name = company_name
 
-    def __str__(self) -> str:
+    def __str__(self) -> str: # to string function
         return f"Company: {self.company_name}\nName: {self.dept_name}\nCode: {self.dept_code}\nContact Number: {self.dept_contact}\nBudget: {self.budget}\n"
     
     def get_name(self) -> str:

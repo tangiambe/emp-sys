@@ -49,7 +49,7 @@ def main():
     try:
         emp_list = import_from_yaml(employee_file)
     except Exception:
-        print("Employee list for Company "+company +
+        print("Employee list for Company "+ company +
               " not found, creating new employee list")
         os.mkdir(company)
         write_to_yaml([],employee_file)
@@ -171,7 +171,6 @@ def main():
                                     "~Error: Invalid Input! PLEASE ENTER A VALID OPTION.~\n")
         except Exception:
             print("Error, something went wrong. Returning to main menu")
-
 
 if __name__ == "__main__":
     main()

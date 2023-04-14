@@ -3,9 +3,15 @@ from employee_file_read_write import *
 from department import *
 from dept_menu_functions import *
 
-def emp_name_input() -> str:
+def emp_first_name_input() -> str:
     while True:
-        emp_name = input("Please enter the employee's first/last name: ")
+        emp_name = input("Please enter the employee's first name: ")
+        if validate_name(emp_name):
+            return emp_name
+        
+def emp_last_name_input() -> str:
+    while True:
+        emp_name = input("Please enter the employee's last name: ")
         if validate_name(emp_name):
             return emp_name
     
@@ -15,27 +21,21 @@ def emp_id_input() -> str:
 
 def emp_doe_input() -> str:
     while True:
-        emp_doe = input("Please input the department code: ")
+        emp_doe = input("Please input the date of employement as YYYY MM DD: ")
         if validate_doe(emp_doe):
             return emp_doe
 
-def emp_new_dept_input() -> str:
-    while True:
-        emp_new_dept = input("Please enter ")
-        # check dept codes to see if one exists
-        # if yes return the input
-
 def emp_salary_input() -> int:
     while True:
-        salary = input("Please enter the department budget: ")
+        salary = input("Please enter the employee's salary: ")
         if validate_salary(salary):
             return int(salary)
 
 def add_emp_prompt(emp_list, employee_file, dept_list, dept_file):
-    emp_fname = input("Enter first name: ")
-    emp_lname = input("Enter last name: ")
-    emp_doe = input ("Enter date of employment (YYYY MM DD): ")
-    emp_salary = int(input("Enter salary: "))
+    emp_fname = emp_first_name_input()
+    emp_lname = emp_last_name_input()
+    emp_doe = emp_doe_input()
+    emp_salary = emp_salary_input()
     dept_code = input("Enter the dept code: ")
     return(add_emp(emp_list, employee_file,emp_fname,emp_lname,emp_doe,emp_salary,verify_dept(dept_code, dept_list, dept_file)))
 
@@ -118,17 +118,17 @@ def update_emp(emp_list,employee_file):
                 choice = input("")
 
                 if (choice == "1"):
-                    emp_fname = input("Enter new first name: ")
-                    print("\nFirst name edited!")
+                    emp_fname = emp_first_name_input()
+                    print("First name edited!")
                 elif(choice == "2"):
-                    emp_lname = input("Enter new last name: ")
-                    print("\nLast name edited!")
+                    emp_lname = emp_last_name_input()
+                    print("Last name edited!")
                 elif(choice == "3"):
-                    emp_doe = input ("Enter new date of employment (YYYY MM DD): ")
-                    print("\nEmployment date edited!")
+                    emp_doe = emp_doe_input()
+                    print("Employment date edited!")
                 elif(choice == "4"):
-                    emp_salary = int(input("Enter new salary: "))
-                    print("\nSalary edited!")
+                    emp_salary = emp_salary_input()
+                    print("Salary edited!")
                 elif(choice == "5"):
                     dept_code = input("Enter the new dept code: ")
                     print("\nDepartment code edited!")

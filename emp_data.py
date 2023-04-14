@@ -50,11 +50,11 @@ def validate_employee_id(set_of_ids: set, id_to_check: str) -> bool:
         return True
     
 def validate_doe(doe: list) -> bool:
-    date_split = doe.split()
-    year = date_split[0]
-    month = date_split[1]
-    day = date_split[2]
     try: 
+        date_split = doe.split()
+        year = date_split[0]
+        month = date_split[1]
+        day = date_split[2]
         if year.isdigit() and month.isdigit() and day.isdigit():
             if validate_year(year) and validate_month(month) and validate_day(day, month, year):
                 return True
@@ -139,7 +139,6 @@ def validate_salary(salary: str) -> bool:
             if salary_value >= 45000:
                 return True
             elif salary_value > 0 and salary_value < 45000:
-                #print(LowSalaryException(salary))
                 raise LowSalaryException(salary)
             else:
                 raise ValueError
