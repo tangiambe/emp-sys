@@ -45,7 +45,7 @@ def edit_department_name(dept: Department):
     print('\nFinished editing name')
 
 def edit_department_code(dept: Department):
-    print("\nWARNING YOU ARE EDITING THE DEPARTMENT CODE, THE CHANGES WILL NOT PROPAGATE TO CURRENT EMPLOYEES") # Can be done through list comphrehension
+    print("WARNING YOU ARE EDITING THE DEPARTMENT CODE, THE CHANGES WILL NOT PROPAGATE TO CURRENT EMPLOYEES")
     new_code = dept_code_input()
     dept.set_dept_name(new_code)
     print('\nFinished editing department code')
@@ -89,9 +89,7 @@ def welcome_dept_menu():
 def search_for_dept(dept_list: list, dept_code) -> Department:
     dept = None
     for dept in dept_list:
-        #print(dept.get_code())
         if dept_code == dept.get_code():
-            #print(dept.get_code())
             return dept
     else:
         return None
