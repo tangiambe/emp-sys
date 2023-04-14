@@ -12,7 +12,7 @@ class Employee:
         self.email = create_company_email(self.first_name, self.last_name, self.doe)
     
     def __str__(self) -> str:
-        return f"First Name: {self.first_name}\nLast Name: {self.last_name}\nDate of Employment: {self.doe}\nSalary: {self.salary}\nID: {self.id}\nEmail: {self.email}"
+        return f"First Name: {self.first_name}\nLast Name: {self.last_name}\nDate of Employment: {self.doe}\nSalary: {self.salary}\nID: {self.id}\nDepartment Code: {self.dept_code}\nEmail: {self.email}"
     
     def get_email(self) -> str:
         return self.email

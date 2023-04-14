@@ -3,11 +3,39 @@ from employee_file_read_write import *
 from department import *
 from dept_menu_functions import *
 
+def emp_first_name_input() -> str:
+    while True:
+        emp_name = input("Please enter the employee's first name: ")
+        if validate_name(emp_name):
+            return emp_name
+        
+def emp_last_name_input() -> str:
+    while True:
+        emp_name = input("Please enter the employee's last name: ")
+        if validate_name(emp_name):
+            return emp_name
+    
+def emp_id_input() -> str:
+    emp_id = input("Please input the department code: ")
+    return emp_id
+
+def emp_doe_input() -> str:
+    while True:
+        emp_doe = input("Please input the date of employement as YYYY MM DD: ")
+        if validate_doe(emp_doe):
+            return emp_doe
+
+def emp_salary_input() -> int:
+    while True:
+        salary = input("Please enter the employee's salary: ")
+        if validate_salary(salary):
+            return int(salary)
+
 def add_emp_prompt(emp_list, employee_file, dept_list, dept_file):
-    emp_fname = input("Enter first name: ")
-    emp_lname = input("Enter last name: ")
-    emp_doe = input ("Enter date of employment (YYYY MM DD): ")
-    emp_salary = int(input("Enter salary: "))
+    emp_fname = emp_first_name_input()
+    emp_lname = emp_last_name_input()
+    emp_doe = emp_doe_input()
+    emp_salary = emp_salary_input()
     dept_code = input("Enter the dept code: ")
     return(add_emp(emp_list, employee_file,emp_fname,emp_lname,emp_doe,emp_salary,verify_dept(dept_code, dept_list, dept_file)))
 
@@ -19,7 +47,7 @@ def verify_dept(code, dept_list, dept_file):
                 dept_found = True
                 return code
         if not dept_found:
-            print(f"Department '{code}' does not exist!\nAssigning DEFAULT Department...")  
+            print(f"\nDepartment '{code}' does not exist!\nAssigning DEFAULT Department Code....")  
             code = Department.DEFAULT_CODE
             dept_list.append(Department(dept_code= code))
             try:
@@ -36,7 +64,6 @@ def add_emp(emp_list, employee_file,emp_fname,emp_lname,emp_doe,emp_salary,dept_
     emp_list.append(new_emp)
     try:
         write_to_yaml(emp_list, employee_file)
-        print("\n~~Employee Succesfully Added!~~")
     except Exception:
         print("Something went wrong with adding employee to file")
     return emp_list
@@ -50,7 +77,6 @@ def remove_emp(del_key,emp_list,employee_file):
             if Employee.get_id(emp) == del_key:
                 emp_list.remove(emp)
                 found = True
-                print("\n~~Employee Succesfully Removed!~~")
                 break
     if found:
             write_to_yaml(emp_list, employee_file)
@@ -81,7 +107,7 @@ def update_emp(emp_list,employee_file):
 
             #Determine which values to change
             while (selection == True):
-                print("Which field would you like to edit?")
+                print("\nWhich field would you like to edit?")
                 print("1: First Name")
                 print("2: Last Name")
                 print("3: Date of Employment")
@@ -92,20 +118,20 @@ def update_emp(emp_list,employee_file):
                 choice = input("")
 
                 if (choice == "1"):
-                    emp_fname = input("Enter first name: ")
+                    emp_fname = emp_first_name_input()
                     print("First name edited!")
                 elif(choice == "2"):
-                    emp_lname = input("Enter last name: ")
+                    emp_lname = emp_last_name_input()
                     print("Last name edited!")
                 elif(choice == "3"):
-                    emp_doe = input ("Enter date of employment (YYYY MM DD): ")
+                    emp_doe = emp_doe_input()
                     print("Employment date edited!")
                 elif(choice == "4"):
-                    emp_salary = int(input("Enter salary: "))
+                    emp_salary = emp_salary_input()
                     print("Salary edited!")
                 elif(choice == "5"):
-                    dept_code = input("Enter the dept code: ")
-                    print("Department code edited!")
+                    dept_code = input("Enter the new dept code: ")
+                    print("\nDepartment code edited!")
                 else:
                     selection = False
 
